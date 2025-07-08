@@ -13,6 +13,13 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
 interface CreateCampaignDialogProps {
   children: React.ReactNode;
@@ -23,6 +30,7 @@ const CreateCampaignDialog = ({ children }: CreateCampaignDialogProps) => {
   const [campaignName, setCampaignName] = useState('');
   const [campaignDescription, setCampaignDescription] = useState('');
   const [campaignType, setCampaignType] = useState('existing');
+  const [selectedFile, setSelectedFile] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,6 +39,7 @@ const CreateCampaignDialog = ({ children }: CreateCampaignDialogProps) => {
       name: campaignName,
       description: campaignDescription,
       type: campaignType,
+      selectedFile: selectedFile,
     });
     setOpen(false);
   };
@@ -39,6 +48,7 @@ const CreateCampaignDialog = ({ children }: CreateCampaignDialogProps) => {
     setCampaignName('');
     setCampaignDescription('');
     setCampaignType('existing');
+    setSelectedFile('');
     setOpen(false);
   };
 
@@ -109,52 +119,78 @@ const CreateCampaignDialog = ({ children }: CreateCampaignDialogProps) => {
                   Cài đặt chiến dịch
                 </h3>
                 
-                <div>
-                  <Label className="text-sm font-medium text-gray-700 mb-3 block">
-                    Chọn tệp khách hàng <span className="text-red-500">*</span>
-                  </Label>
-                  
-                  <RadioGroup 
-                    value={campaignType} 
-                    onValueChange={setCampaignType}
-                    className="space-y-4"
-                  >
-                    <div className="flex items-start space-x-3 p-3 border rounded-lg hover:bg-gray-50">
-                      <RadioGroupItem value="existing" id="existing" className="mt-1" />
-                      <div className="flex-1">
-                        <div className="flex items-center space-x-2">
-                          <Users className="w-4 h-4 text-gray-500" />
-                          <Label 
-                            htmlFor="existing"
-                            className="font-medium text-gray-900 cursor-pointer"
-                          >
-                            Chọn tệp tiềm năng có sẵn
-                          </Label>
+                <div className="space-y-4">
+                  <div>
+                    <Label className="text-sm font-medium text-gray-700 mb-3 block">
+                      Chọn tệp khách hàng <span className="text-red-500">*</span>
+                    </Label>
+                    
+                    <RadioGroup 
+                      value={campaignType} 
+                      onValueChange={setCampaignType}
+                      className="grid grid-cols-2 gap-3"
+                    >
+                      <div className={`flex items-start space-x-3 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer ${
+                        campaignType === 'existing' ? 'border-orange-500 bg-orange-50' : 'border-gray-200'
+                      }`}>
+                        <RadioGroupItem value="existing" id="existing" className="mt-1" />
+                        <div className="flex-1">
+                          <div className="flex items-center space-x-2">
+                            <Users className="w-4 h-4 text-gray-500" />
+                            <Label 
+                              htmlFor="existing"
+                              className="font-medium text-gray-900 cursor-pointer text-sm"
+                            >
+                              Chọn tệp tiềm năng có sẵn
+                            </Label>
+                          </div>
+                          <p className="text-xs text-gray-500 mt-1">
+                            Sử dụng tệp khách hàng có sẵn
+                          </p>
                         </div>
-                        <p className="text-sm text-gray-500 mt-1">
-                          Sử dụng tệp khách hàng có sẵn
-                        </p>
                       </div>
-                    </div>
 
-                    <div className="flex items-start space-x-3 p-3 border rounded-lg hover:bg-gray-50">
-                      <RadioGroupItem value="custom" id="custom" className="mt-1" />
-                      <div className="flex-1">
-                        <div className="flex items-center space-x-2">
-                          <Settings className="w-4 h-4 text-gray-500" />
-                          <Label 
-                            htmlFor="custom"
-                            className="font-medium text-gray-900 cursor-pointer"
-                          >
-                            Tùy chỉnh điều kiện
-                          </Label>
+                      <div className={`flex items-start space-x-3 p-3 border rounded-lg hover:bg-gray-50 cursor-pointer ${
+                        campaignType === 'custom' ? 'border-orange-500 bg-orange-50' : 'border-gray-200'
+                      }`}>
+                        <RadioGroupItem value="custom" id="custom" className="mt-1" />
+                        <div className="flex-1">
+                          <div className="flex items-center space-x-2">
+                            <Settings className="w-4 h-4 text-gray-500" />
+                            <Label 
+                              htmlFor="custom"
+                              className="font-medium text-gray-900 cursor-pointer text-sm"
+                            >
+                              Tùy chỉnh điều kiện
+                            </Label>
+                          </div>
+                          <p className="text-xs text-gray-500 mt-1">
+                            Tạo tệp mới từ bộ lọc khách hàng
+                          </p>
                         </div>
-                        <p className="text-sm text-gray-500 mt-1">
-                          Tạo tệp mới từ bộ lọc khách hàng
-                        </p>
                       </div>
+                    </RadioGroup>
+                  </div>
+
+                  {/* Show dropdown when "existing" is selected */}
+                  {campaignType === 'existing' && (
+                    <div>
+                      <Label className="text-sm font-medium text-gray-700 mb-2 block">
+                        Chọn tệp tiềm năng <span className="text-red-500">*</span>
+                      </Label>
+                      <Select value={selectedFile} onValueChange={setSelectedFile}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Chọn một hoặc nhiều phân khúc bạn đã tạo..." />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="segment1">Phân khúc khách hàng VIP</SelectItem>
+                          <SelectItem value="segment2">Khách hàng tiềm năng mới</SelectItem>
+                          <SelectItem value="segment3">Khách hàng đã mua hàng</SelectItem>
+                          <SelectItem value="segment4">Khách hàng quan tâm sản phẩm A</SelectItem>
+                        </SelectContent>
+                      </Select>
                     </div>
-                  </RadioGroup>
+                  )}
                 </div>
               </div>
             </div>
