@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { X, Users, Settings } from 'lucide-react';
+import { X, Users, Filter } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -31,6 +31,7 @@ const CreateCampaignDialog = ({ children }: CreateCampaignDialogProps) => {
   const [campaignDescription, setCampaignDescription] = useState('');
   const [campaignType, setCampaignType] = useState('existing');
   const [selectedFile, setSelectedFile] = useState('');
+  const [selectedFilter, setSelectedFilter] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -40,6 +41,7 @@ const CreateCampaignDialog = ({ children }: CreateCampaignDialogProps) => {
       description: campaignDescription,
       type: campaignType,
       selectedFile: selectedFile,
+      selectedFilter: selectedFilter,
     });
     setOpen(false);
   };
@@ -49,6 +51,7 @@ const CreateCampaignDialog = ({ children }: CreateCampaignDialogProps) => {
     setCampaignDescription('');
     setCampaignType('existing');
     setSelectedFile('');
+    setSelectedFilter('');
     setOpen(false);
   };
 
@@ -156,16 +159,16 @@ const CreateCampaignDialog = ({ children }: CreateCampaignDialogProps) => {
                         <RadioGroupItem value="custom" id="custom" className="mt-1" />
                         <div className="flex-1">
                           <div className="flex items-center space-x-2">
-                            <Settings className="w-4 h-4 text-gray-500" />
+                            <Filter className="w-4 h-4 text-gray-500" />
                             <Label 
                               htmlFor="custom"
                               className="font-medium text-gray-900 cursor-pointer text-sm"
                             >
-                              Tùy chỉnh điều kiện
+                              Chọn bộ lọc đã lưu
                             </Label>
                           </div>
                           <p className="text-xs text-gray-500 mt-1">
-                            Tạo tệp mới từ bộ lọc khách hàng
+                            Sử dụng những bộ lọc đã lưu
                           </p>
                         </div>
                       </div>
@@ -187,6 +190,26 @@ const CreateCampaignDialog = ({ children }: CreateCampaignDialogProps) => {
                           <SelectItem value="segment2">Khách hàng tiềm năng mới</SelectItem>
                           <SelectItem value="segment3">Khách hàng đã mua hàng</SelectItem>
                           <SelectItem value="segment4">Khách hàng quan tâm sản phẩm A</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  )}
+
+                  {/* Show dropdown when "custom" (filter) is selected */}
+                  {campaignType === 'custom' && (
+                    <div>
+                      <Label className="text-sm font-medium text-gray-700 mb-2 block">
+                        Chọn bộ lọc <span className="text-red-500">*</span>
+                      </Label>
+                      <Select value={selectedFilter} onValueChange={setSelectedFilter}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Chọn các bộ lọc đã lưu" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="filter1">Bộ lọc khách hàng VIP</SelectItem>
+                          <SelectItem value="filter2">Bộ lọc khách hàng mới</SelectItem>
+                          <SelectItem value="filter3">Bộ lọc theo độ tuổi</SelectItem>
+                          <SelectItem value="filter4">Bộ lọc theo khu vực</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
