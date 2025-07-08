@@ -3,6 +3,7 @@ import React from 'react';
 import { Search, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import CreateCampaignDialog from './CreateCampaignDialog';
 
 const CampaignHeader = () => {
   return (
@@ -23,10 +24,12 @@ const CampaignHeader = () => {
               className="pl-10 w-80"
             />
           </div>
-          <Button className="bg-gray-900 hover:bg-gray-800 text-white">
-            <Plus className="w-4 h-4 mr-2" />
-            Tạo chiến dịch
-          </Button>
+          <CreateCampaignDialog>
+            <Button className="bg-gray-900 hover:bg-gray-800 text-white">
+              <Plus className="w-4 h-4 mr-2" />
+              Tạo chiến dịch
+            </Button>
+          </CreateCampaignDialog>
         </div>
       </div>
     </header>
