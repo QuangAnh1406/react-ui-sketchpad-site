@@ -27,7 +27,7 @@ const EmptyState = () => {
         </div>
 
         {/* Content */}
-        <div className="mb-6">
+        <div className="mb-2">
           <h2 className="text-xl font-semibold text-gray-900 mb-2">
             Bạn chưa tạo chiến dịch nào.
           </h2>

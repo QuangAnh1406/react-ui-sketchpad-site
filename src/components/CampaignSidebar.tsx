@@ -1,13 +1,13 @@
 
 import React from 'react';
-import { Badge, Users, Settings } from 'lucide-react';
+import { LayoutGrid, Megaphone, Users, Filter  } from 'lucide-react';
 
 const CampaignSidebar = () => {
   const menuItems = [
-    { icon: Badge, label: 'Báo cáo', active: false },
-    { icon: Badge, label: 'Chiến dịch', active: true },
+    // { icon: Badge, label: 'Báo cáo', active: false },
+    { icon: Megaphone, label: 'Chiến dịch', active: true },
     { icon: Users, label: 'Khách hàng', active: false },
-    { icon: Settings, label: 'Tiêm năng', active: false },
+    { icon: Filter , label: 'Tiêm năng', active: false },
   ];
 
   return (
@@ -21,9 +21,20 @@ const CampaignSidebar = () => {
         </div>
       </div>
 
+
       {/* Navigation */}
       <nav className="flex-1 p-4">
+        <div className="mb-8">
+          <button className="w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-left text-gray-600 hover:bg-gray-50 transition-colors">
+            <LayoutGrid className="w-5 h-5" />
+            <span className="text-sm font-medium">Báo Cáo</span>
+          </button>
+        </div>
+
         <div className="space-y-1">
+        <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">
+            Chiến dịch
+          </p>
           {menuItems.map((item, index) => (
             <button
               key={index}
