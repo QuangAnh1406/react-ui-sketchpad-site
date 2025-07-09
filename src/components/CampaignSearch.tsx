@@ -5,7 +5,12 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import CreateCampaignDialog from './CreateCampaignDialog';
 
-const CampaignSearch = () => {
+interface CampaignSearchProps {
+  searchTerm: string;
+  onSearchChange: (value: string) => void;
+}
+
+const CampaignSearch = ({ searchTerm, onSearchChange }: CampaignSearchProps) => {
     return (
         <div className="bg-white border-b border-gray-200 px-6 py-2">
             <div className="flex justify-end">
@@ -14,6 +19,8 @@ const CampaignSearch = () => {
                     <Input
                         placeholder="Tìm kiếm chiến dịch"
                         className="pl-10 w-80"
+                        value={searchTerm}
+                        onChange={(e) => onSearchChange(e.target.value)}
                     />
                 </div>
             </div>

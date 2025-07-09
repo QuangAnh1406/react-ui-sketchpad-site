@@ -25,6 +25,7 @@ interface Campaign {
 const CampaignLayout = () => {
   const [campaigns, setCampaigns] = useState<Campaign[]>([]);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     const loadCampaigns = async () => {
@@ -49,7 +50,7 @@ const CampaignLayout = () => {
         <CampaignSidebar />
         <div className="flex-1 flex flex-col">
           <CampaignHeader />
-          <CampaignSearch />
+          <CampaignSearch searchTerm={searchTerm} onSearchChange={setSearchTerm} />
           <main className="flex-1 p-6 flex items-center justify-center">
             <div className="text-center">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-orange-500 mx-auto"></div>
@@ -66,12 +67,12 @@ const CampaignLayout = () => {
       <CampaignSidebar />
       <div className="flex-1 flex flex-col">
         <CampaignHeader />
-        <CampaignSearch />
+        <CampaignSearch searchTerm={searchTerm} onSearchChange={setSearchTerm} />
         <main className="flex-1 p-6">
           {campaigns.length === 0 ? (
             <EmptyState />
           ) : (
-            <CampaignTable campaigns={campaigns} />
+            <CampaignTable campaigns={campaigns} searchTerm={searchTerm} />
           )}
         </main>
       </div>

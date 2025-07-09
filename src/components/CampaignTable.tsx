@@ -1,8 +1,6 @@
-
 import React, { useState, useMemo } from 'react';
 import { ChevronDown, Edit, Trash2, MoreHorizontal, ArrowUpDown, Filter, Users, Eye, EyeOff } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import {
   Table,
   TableBody,
@@ -42,12 +40,12 @@ interface Campaign {
 
 interface CampaignTableProps {
   campaigns: Campaign[];
+  searchTerm: string;
 }
 
-const CampaignTable = ({ campaigns }: CampaignTableProps) => {
+const CampaignTable = ({ campaigns, searchTerm }: CampaignTableProps) => {
   const [sortField, setSortField] = useState<string>('');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
-  const [searchTerm, setSearchTerm] = useState('');
   const [visibilityFilter, setVisibilityFilter] = useState<string>('all');
 
   // Filtering and sorting logic
@@ -175,15 +173,6 @@ const CampaignTable = ({ campaigns }: CampaignTableProps) => {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-          </div>
-
-          <div className="flex items-center space-x-2">
-            <Input
-              placeholder="Tìm kiếm chiến dịch"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-64"
-            />
           </div>
         </div>
       </div>
