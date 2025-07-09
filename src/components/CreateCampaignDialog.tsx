@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7242ed48c53e1f8ce3b4485bd40068e308af0680
 import React, { useState } from 'react';
 import { X, Users, Filter } from 'lucide-react';
 import {
@@ -57,7 +61,11 @@ const CreateCampaignDialog = ({ children }: CreateCampaignDialogProps) => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
+<<<<<<< HEAD
       <DialogContent className="sm:max-w-[850px] p-0">
+=======
+      <DialogContent className="sm:max-w-[600px] p-0">
+>>>>>>> 7242ed48c53e1f8ce3b4485bd40068e308af0680
         <DialogHeader className="px-6 py-4 border-b">
           <DialogTitle className="text-xl font-semibold">
             Tạo chiến dịch mới
