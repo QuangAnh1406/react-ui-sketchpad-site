@@ -59,6 +59,7 @@ const CreateCampaignDialog = ({ children }: CreateCampaignDialogProps) => {
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="sm:max-w-[600px] p-0">
       <DialogContent className="sm:max-w-[850px] p-0">
+      <DialogContent className="sm:max-w-[600px] p-0">
         <DialogHeader className="px-6 py-4 border-b">
           <DialogTitle className="text-xl font-semibold">
             Tạo chiến dịch mới
@@ -236,6 +237,7 @@ const CreateCampaignDialog = ({ children }: CreateCampaignDialogProps) => {
             </Button>
           </div>
         </form>
+      </DialogContent>
       </DialogContent>
       </DialogContent>
     </Dialog>

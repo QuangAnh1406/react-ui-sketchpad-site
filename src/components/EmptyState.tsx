@@ -2,6 +2,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Plus } from 'lucide-react';
+import CreateCampaignDialog from './CreateCampaignDialog';
 
 const EmptyState = () => {
   return (
@@ -37,10 +38,12 @@ const EmptyState = () => {
         </div>
 
         {/* Action Button */}
-        <Button className="bg-gray-900 hover:bg-gray-800 text-white px-6 py-2">
-          <Plus className="w-4 h-4 mr-2" />
-          Tạo chiến dịch
-        </Button>
+        <CreateCampaignDialog>
+          <Button className="bg-gray-900 hover:bg-gray-800 text-white px-6 py-2">
+            <Plus className="w-4 h-4 mr-2" />
+            Tạo chiến dịch
+          </Button>
+        </CreateCampaignDialog>
       </div>
     </div>
   );
