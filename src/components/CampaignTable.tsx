@@ -1,3 +1,4 @@
+
 import React, { useState, useMemo } from 'react';
 import { ChevronDown, Edit, Trash2, MoreHorizontal, ArrowUpDown, Filter, Users, Eye, EyeOff } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -21,6 +22,11 @@ import {
   ContextMenuItem,
   ContextMenuTrigger,
 } from '@/components/ui/context-menu';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
 
 interface Campaign {
   name: string;
@@ -108,17 +114,60 @@ const CampaignTable = ({ campaigns, searchTerm }: CampaignTableProps) => {
     return amount >= 0 ? 'text-green-600' : 'text-red-600';
   };
 
-  const getVisibilityBadge = (visibility: string) => {
+  const getVisibilityBadge = (visibility: string, onClick: () => void) => {
     const isPrivate = visibility === 'Riêng tư';
     return (
-      <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
-        isPrivate 
-          ? 'bg-gray-100 text-gray-800 border border-gray-200' 
-          : 'bg-green-100 text-green-800 border border-green-200'
-      }`}>
-        {isPrivate ? <EyeOff className="w-3 h-3 mr-1" /> : <Eye className="w-3 h-3 mr-1" />}
-        {visibility}
-      </span>
+      <Popover>
+        <PopoverTrigger asChild>
+          <button 
+            className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium cursor-pointer hover:opacity-80 transition-opacity ${
+              isPrivate 
+                ? 'bg-gray-100 text-gray-800 border border-gray-200' 
+                : 'bg-green-100 text-green-800 border border-green-200'
+            }`}
+            onClick={onClick}
+          >
+            {isPrivate ? <EyeOff className="w-3 h-3 mr-1" /> : <Eye className="w-3 h-3 mr-1" />}
+            {visibility}
+          </button>
+        </PopoverTrigger>
+        <PopoverContent className="w-48" align="start">
+          <div className="space-y-1">
+            <div className="font-medium text-sm mb-2">Chỉnh sửa phân quyền</div>
+            <button
+              className="w-full text-left px-2 py-1 text-sm rounded hover:bg-gray-100 flex items-center"
+              onClick={() => {
+                console.log('Đổi thành Công khai');
+                // TODO: Implement visibility change to public
+              }}
+            >
+              <Eye className="w-3 h-3 mr-2" />
+              Công khai
+            </button>
+            <button
+              className="w-full text-left px-2 py-1 text-sm rounded hover:bg-gray-100 flex items-center"
+              onClick={() => {
+                console.log('Đổi thành Riêng tư');
+                // TODO: Implement visibility change to private
+              }}
+            >
+              <EyeOff className="w-3 h-3 mr-2" />
+              Riêng tư
+            </button>
+            <hr className="my-2" />
+            <button
+              className="w-full text-left px-2 py-1 text-sm rounded hover:bg-gray-100 flex items-center"
+              onClick={() => {
+                console.log('Mở cài đặt phân quyền chi tiết');
+                // TODO: Implement detailed permissions settings
+              }}
+            >
+              <Users className="w-3 h-3 mr-2" />
+              Cài đặt chi tiết
+            </button>
+          </div>
+        </PopoverContent>
+      </Popover>
     );
   };
 
@@ -135,6 +184,11 @@ const CampaignTable = ({ campaigns, searchTerm }: CampaignTableProps) => {
   const handlePermissions = (campaign: Campaign) => {
     console.log('Edit permissions for campaign:', campaign.name);
     // TODO: Implement permissions functionality
+  };
+
+  const handleVisibilityChange = (campaign: Campaign) => {
+    console.log('Change visibility for campaign:', campaign.name);
+    // TODO: Implement visibility change functionality
   };
 
   return (
@@ -240,7 +294,7 @@ const CampaignTable = ({ campaigns, searchTerm }: CampaignTableProps) => {
                       </div>
                     </TableCell>
                     <TableCell>
-                      {getVisibilityBadge(campaign.visibility)}
+                      {getVisibilityBadge(campaign.visibility, () => handleVisibilityChange(campaign))}
                     </TableCell>
                     <TableCell>
                       <div className="flex items-center space-x-2">
