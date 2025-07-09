@@ -1,0 +1,77 @@
+[
+  {
+    "name": "Khuyến mãi Ngày Valentine",
+    "date": "07/05/2016",
+    "visibility": "Riêng tư",
+    "manager": {
+      "name": "Nicki Minaj",
+      "email": "nicki.mn@xiaomi.com"
+    },
+    "total_customers": 12345,
+    "revenue": {
+      "amount": 12345223,
+      "change": "+87%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Giảm giá Ngày Xuân Phân",
+    "date": "16/08/2013",
+    "visibility": "Riêng tư",
+    "manager": {
+      "name": "Adele",
+      "email": "adele.ad@xiaomi.com"
+    },
+    "total_customers": 23345,
+    "revenue": {
+      "amount": 34567890,
+      "change": "+45%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Ưu đãi Cuối tuần Phục sinh",
+    "date": "15/08/2017",
+    "visibility": "Riêng tư",
+    "manager": {
+      "name": "Rihanna",
+      "email": "rihanna.ft@xiaomi.com"
+    },
+    "total_customers": 34567,
+    "revenue": {
+      "amount": -23456789,
+      "change": "-23%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Ưu đãi Ngày của Mẹ",
+    "date": "12/06/2020",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Mariah Carey",
+      "email": "mariah.c@xiaomi.com"
+    },
+    "total_customers": 45678,
+    "revenue": {
+      "amount": 10912345,
+      "change": "+16%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Lễ hội Ngày Hạ Chí",
+    "date": "07/05/2016",
+    "visibility": "Riêng tư",
+    "manager": {
+      "name": "Pink",
+      "email": "pink.p@xiaomi.com"
+    },
+    "total_customers": 56789,
+    "revenue": {
+      "amount": -45678901,
+      "change": "-45%",
+      "compared_to": "với tuần trước"
+    }
+  }
+]

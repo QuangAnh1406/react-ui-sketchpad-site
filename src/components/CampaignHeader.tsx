@@ -17,14 +17,6 @@ const CampaignHeader = () => {
         </div>
 
         <div className="flex items-center space-x-4">
-
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-            <Input
-              placeholder="Tìm kiếm chiến dịch"
-              className="pl-10 w-80"
-            />
-          </div>
           <CreateCampaignDialog>
             <Button className="bg-gray-900 hover:bg-gray-800 text-white">
               <Plus className="w-4 h-4 mr-2" />
@@ -33,15 +25,6 @@ const CampaignHeader = () => {
           </CreateCampaignDialog>
         </div>
       </div>
-      {/* <div className="flex justify-end">
-        <div className="relative mt-4">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-          <Input
-            placeholder="Tìm kiếm chiến dịch"
-            className="pl-10 w-80"
-          />
-        </div>
-      </div> */}
     </header>
 
   );
