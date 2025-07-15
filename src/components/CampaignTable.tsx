@@ -1,3 +1,4 @@
+
 import React, { useState, useMemo } from 'react';
 import { ChevronDown, Edit, Trash2, MoreHorizontal, ArrowUpDown, Filter, Users, Eye, EyeOff } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -21,6 +22,13 @@ import {
   ContextMenuItem,
   ContextMenuTrigger,
 } from '@/components/ui/context-menu';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import CampaignPermissionsDialog from './CampaignPermissionsDialog';
 
 interface Campaign {
@@ -50,6 +58,8 @@ const CampaignTable = ({ campaigns, searchTerm }: CampaignTableProps) => {
   const [visibilityFilter, setVisibilityFilter] = useState<string>('all');
   const [permissionsDialogOpen, setPermissionsDialogOpen] = useState(false);
   const [selectedCampaign, setSelectedCampaign] = useState<Campaign | null>(null);
+  const [pageSize, setPageSize] = useState<number>(10);
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
   // Filtering and sorting logic
   const filteredAndSortedCampaigns = useMemo(() => {
@@ -90,6 +100,19 @@ const CampaignTable = ({ campaigns, searchTerm }: CampaignTableProps) => {
 
     return filtered;
   }, [campaigns, searchTerm, visibilityFilter, sortField, sortDirection]);
+
+  // Pagination logic
+  const totalItems = filteredAndSortedCampaigns.length;
+  const totalPages = Math.ceil(totalItems / pageSize);
+  const startIndex = (currentPage - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
+  const currentPageCampaigns = filteredAndSortedCampaigns.slice(startIndex, endIndex);
+
+  // Reset to first page when pageSize changes
+  const handlePageSizeChange = (newPageSize: string) => {
+    setPageSize(parseInt(newPageSize));
+    setCurrentPage(1);
+  };
 
   const handleSort = (field: string) => {
     if (sortField === field) {
@@ -141,6 +164,27 @@ const CampaignTable = ({ campaigns, searchTerm }: CampaignTableProps) => {
   const handlePermissions = (campaign: Campaign) => {
     setSelectedCampaign(campaign);
     setPermissionsDialogOpen(true);
+  };
+
+  const generatePageNumbers = () => {
+    const pages = [];
+    const maxVisiblePages = 5;
+    
+    if (totalPages <= maxVisiblePages) {
+      for (let i = 1; i <= totalPages; i++) {
+        pages.push(i);
+      }
+    } else {
+      if (currentPage <= 3) {
+        pages.push(1, 2, 3, '...', totalPages);
+      } else if (currentPage >= totalPages - 2) {
+        pages.push(1, '...', totalPages - 2, totalPages - 1, totalPages);
+      } else {
+        pages.push(1, '...', currentPage - 1, currentPage, currentPage + 1, '...', totalPages);
+      }
+    }
+    
+    return pages;
   };
 
   return (
@@ -233,7 +277,7 @@ const CampaignTable = ({ campaigns, searchTerm }: CampaignTableProps) => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {filteredAndSortedCampaigns.map((campaign, index) => (
+              {currentPageCampaigns.map((campaign, index) => (
                 <ContextMenu key={index}>
                   <ContextMenuTrigger asChild>
                     <TableRow className="hover:bg-gray-50">
@@ -327,29 +371,59 @@ const CampaignTable = ({ campaigns, searchTerm }: CampaignTableProps) => {
         {/* Pagination */}
         <div className="flex items-center justify-between px-4 py-3 border-t border-gray-200">
           <div className="flex items-center space-x-2">
+            <Select value={pageSize.toString()} onValueChange={handlePageSizeChange}>
+              <SelectTrigger className="w-20">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="5">5</SelectItem>
+                <SelectItem value="10">10</SelectItem>
+                <SelectItem value="20">20</SelectItem>
+                <SelectItem value="50">50</SelectItem>
+                <SelectItem value="100">100</SelectItem>
+              </SelectContent>
+            </Select>
             <span className="text-sm text-gray-500">
-              {filteredAndSortedCampaigns.length} mục trên mỗi trang
+              mục trên mỗi trang
+            </span>
+            <span className="text-sm text-gray-500">
+              · Hiển thị {startIndex + 1}-{Math.min(endIndex, totalItems)} trong {totalItems} mục
             </span>
           </div>
           
           <div className="flex items-center space-x-2">
-            <Button variant="outline" size="sm" disabled>
+            <Button 
+              variant="outline" 
+              size="sm" 
+              disabled={currentPage === 1}
+              onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+            >
               &lt;
             </Button>
-            <Button variant="outline" size="sm" className="bg-orange-500 text-white border-orange-500">
-              1
-            </Button>
-            <Button variant="outline" size="sm">
-              2
-            </Button>
-            <Button variant="outline" size="sm">
-              3
-            </Button>
-            <span className="text-sm text-gray-500">...</span>
-            <Button variant="outline" size="sm">
-              10
-            </Button>
-            <Button variant="outline" size="sm">
+            
+            {generatePageNumbers().map((page, index) => (
+              <React.Fragment key={index}>
+                {page === '...' ? (
+                  <span className="text-sm text-gray-500">...</span>
+                ) : (
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className={currentPage === page ? "bg-orange-500 text-white border-orange-500" : ""}
+                    onClick={() => setCurrentPage(page as number)}
+                  >
+                    {page}
+                  </Button>
+                )}
+              </React.Fragment>
+            ))}
+            
+            <Button 
+              variant="outline" 
+              size="sm" 
+              disabled={currentPage === totalPages}
+              onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+            >
               &gt;
             </Button>
           </div>
