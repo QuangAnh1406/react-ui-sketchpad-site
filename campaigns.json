@@ -1,3 +1,4 @@
+
 [
   {
     "name": "Khuyến mãi Ngày Valentine",
@@ -71,6 +72,1401 @@
     "revenue": {
       "amount": -45678901,
       "change": "-45%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Flash Sale Cuối Tuần",
+    "date": "23/09/2023",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Taylor Swift",
+      "email": "taylor.s@xiaomi.com"
+    },
+    "total_customers": 67890,
+    "revenue": {
+      "amount": 56789012,
+      "change": "+92%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Sale Tết Nguyên Đán",
+    "date": "15/02/2024",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Billie Eilish",
+      "email": "billie.e@xiaomi.com"
+    },
+    "total_customers": 78901,
+    "revenue": {
+      "amount": 78901234,
+      "change": "+156%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Khuyến mãi Tháng 3",
+    "date": "08/03/2023",
+    "visibility": "Riêng tư",
+    "manager": {
+      "name": "Dua Lipa",
+      "email": "dua.l@xiaomi.com"
+    },
+    "total_customers": 89012,
+    "revenue": {
+      "amount": 23456789,
+      "change": "+34%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Giảm giá Mùa Hè",
+    "date": "21/06/2023",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Ariana Grande",
+      "email": "ariana.g@xiaomi.com"
+    },
+    "total_customers": 90123,
+    "revenue": {
+      "amount": 45678901,
+      "change": "+67%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Black Friday 2023",
+    "date": "24/11/2023",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Beyoncé",
+      "email": "beyonce.b@xiaomi.com"
+    },
+    "total_customers": 101234,
+    "revenue": {
+      "amount": 123456789,
+      "change": "+234%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Cyber Monday Sale",
+    "date": "27/11/2023",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Lady Gaga",
+      "email": "lady.g@xiaomi.com"
+    },
+    "total_customers": 87654,
+    "revenue": {
+      "amount": 98765432,
+      "change": "+189%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Sale Giáng Sinh",
+    "date": "25/12/2023",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Katy Perry",
+      "email": "katy.p@xiaomi.com"
+    },
+    "total_customers": 76543,
+    "revenue": {
+      "amount": 87654321,
+      "change": "+145%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Khuyến mãi Năm Mới",
+    "date": "01/01/2024",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Selena Gomez",
+      "email": "selena.g@xiaomi.com"
+    },
+    "total_customers": 65432,
+    "revenue": {
+      "amount": 76543210,
+      "change": "+123%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Ưu đãi Học Sinh",
+    "date": "01/09/2023",
+    "visibility": "Riêng tư",
+    "manager": {
+      "name": "Olivia Rodrigo",
+      "email": "olivia.r@xiaomi.com"
+    },
+    "total_customers": 54321,
+    "revenue": {
+      "amount": 65432109,
+      "change": "+78%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Sale Tháng 4",
+    "date": "01/04/2023",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Doja Cat",
+      "email": "doja.c@xiaomi.com"
+    },
+    "total_customers": 43210,
+    "revenue": {
+      "amount": 54321098,
+      "change": "+56%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Khuyến mãi Tháng 5",
+    "date": "01/05/2023",
+    "visibility": "Riêng tư",
+    "manager": {
+      "name": "Miley Cyrus",
+      "email": "miley.c@xiaomi.com"
+    },
+    "total_customers": 32109,
+    "revenue": {
+      "amount": 43210987,
+      "change": "+34%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Giảm giá Tháng 6",
+    "date": "01/06/2023",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Camila Cabello",
+      "email": "camila.c@xiaomi.com"
+    },
+    "total_customers": 21098,
+    "revenue": {
+      "amount": 32109876,
+      "change": "+23%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Ưu đãi Tháng 7",
+    "date": "01/07/2023",
+    "visibility": "Riêng tư",
+    "manager": {
+      "name": "Shawn Mendes",
+      "email": "shawn.m@xiaomi.com"
+    },
+    "total_customers": 10987,
+    "revenue": {
+      "amount": 21098765,
+      "change": "+12%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Sale Tháng 8",
+    "date": "01/08/2023",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Justin Bieber",
+      "email": "justin.b@xiaomi.com"
+    },
+    "total_customers": 98765,
+    "revenue": {
+      "amount": 10987654,
+      "change": "+89%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Khuyến mãi Tháng 9",
+    "date": "01/09/2023",
+    "visibility": "Riêng tư",
+    "manager": {
+      "name": "The Weeknd",
+      "email": "weeknd.t@xiaomi.com"
+    },
+    "total_customers": 87654,
+    "revenue": {
+      "amount": 9876543,
+      "change": "+67%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Giảm giá Tháng 10",
+    "date": "01/10/2023",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Drake",
+      "email": "drake.d@xiaomi.com"
+    },
+    "total_customers": 76543,
+    "revenue": {
+      "amount": 8765432,
+      "change": "+45%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Ưu đãi Halloween",
+    "date": "31/10/2023",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Bad Bunny",
+      "email": "bad.b@xiaomi.com"
+    },
+    "total_customers": 65432,
+    "revenue": {
+      "amount": 7654321,
+      "change": "+23%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Sale Tháng 11",
+    "date": "01/11/2023",
+    "visibility": "Riêng tư",
+    "manager": {
+      "name": "Harry Styles",
+      "email": "harry.s@xiaomi.com"
+    },
+    "total_customers": 54321,
+    "revenue": {
+      "amount": 6543210,
+      "change": "+34%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Khuyến mãi Tháng 12",
+    "date": "01/12/2023",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Ed Sheeran",
+      "email": "ed.s@xiaomi.com"
+    },
+    "total_customers": 43210,
+    "revenue": {
+      "amount": 5432109,
+      "change": "+56%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Giảm giá Đầu Năm",
+    "date": "15/01/2024",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Bruno Mars",
+      "email": "bruno.m@xiaomi.com"
+    },
+    "total_customers": 32109,
+    "revenue": {
+      "amount": 4321098,
+      "change": "+78%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Ưu đãi Tết Dương Lịch",
+    "date": "01/01/2024",
+    "visibility": "Riêng tư",
+    "manager": {
+      "name": "Post Malone",
+      "email": "post.m@xiaomi.com"
+    },
+    "total_customers": 21098,
+    "revenue": {
+      "amount": 3210987,
+      "change": "+90%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Sale Cuối Tháng 1",
+    "date": "31/01/2024",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Lil Nas X",
+      "email": "lil.n@xiaomi.com"
+    },
+    "total_customers": 10987,
+    "revenue": {
+      "amount": 2109876,
+      "change": "+123%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Khuyến mãi Tình Yêu",
+    "date": "14/02/2024",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Lizzo",
+      "email": "lizzo.l@xiaomi.com"
+    },
+    "total_customers": 98765,
+    "revenue": {
+      "amount": 1098765,
+      "change": "+234%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Giảm giá Ngày Phụ Nữ",
+    "date": "08/03/2024",
+    "visibility": "Riêng tư",
+    "manager": {
+      "name": "Cardi B",
+      "email": "cardi.b@xiaomi.com"
+    },
+    "total_customers": 87654,
+    "revenue": {
+      "amount": 987654,
+      "change": "+345%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Ưu đãi Mùa Xuân",
+    "date": "20/03/2024",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Megan Thee Stallion",
+      "email": "megan.t@xiaomi.com"
+    },
+    "total_customers": 76543,
+    "revenue": {
+      "amount": 876543,
+      "change": "+456%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Sale Tháng 4 Xuân",
+    "date": "01/04/2024",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Lana Del Rey",
+      "email": "lana.d@xiaomi.com"
+    },
+    "total_customers": 65432,
+    "revenue": {
+      "amount": 765432,
+      "change": "+567%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Khuyến mãi Giỗ Tổ",
+    "date": "18/04/2024",
+    "visibility": "Riêng tư",
+    "manager": {
+      "name": "SZA",
+      "email": "sza.s@xiaomi.com"
+    },
+    "total_customers": 54321,
+    "revenue": {
+      "amount": 654321,
+      "change": "+678%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Giảm giá Lễ 30/4",
+    "date": "30/04/2024",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Dua Lipa",
+      "email": "dua.l2@xiaomi.com"
+    },
+    "total_customers": 43210,
+    "revenue": {
+      "amount": 543210,
+      "change": "+789%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Ưu đãi Lễ 1/5",
+    "date": "01/05/2024",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Halsey",
+      "email": "halsey.h@xiaomi.com"
+    },
+    "total_customers": 32109,
+    "revenue": {
+      "amount": 432109,
+      "change": "+890%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Sale Tháng 5 Hè",
+    "date": "15/05/2024",
+    "visibility": "Riêng tư",
+    "manager": {
+      "name": "Charli XCX",
+      "email": "charli.x@xiaomi.com"
+    },
+    "total_customers": 21098,
+    "revenue": {
+      "amount": 321098,
+      "change": "+901%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Khuyến mãi Cuối Tháng 5",
+    "date": "31/05/2024",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Sabrina Carpenter",
+      "email": "sabrina.c@xiaomi.com"
+    },
+    "total_customers": 10987,
+    "revenue": {
+      "amount": 210987,
+      "change": "+123%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Giảm giá Tháng 6 Hè",
+    "date": "01/06/2024",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Tate McRae",
+      "email": "tate.m@xiaomi.com"
+    },
+    "total_customers": 98765,
+    "revenue": {
+      "amount": 109876,
+      "change": "+234%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Ưu đãi Trung Thu",
+    "date": "15/08/2024",
+    "visibility": "Riêng tư",
+    "manager": {
+      "name": "Gracie Abrams",
+      "email": "gracie.a@xiaomi.com"
+    },
+    "total_customers": 87654,
+    "revenue": {
+      "amount": 98765,
+      "change": "+345%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Sale Quốc Khánh",
+    "date": "02/09/2024",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Chappell Roan",
+      "email": "chappell.r@xiaomi.com"
+    },
+    "total_customers": 76543,
+    "revenue": {
+      "amount": 87654,
+      "change": "+456%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Khuyến mãi Thu Đông",
+    "date": "15/09/2024",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Ice Spice",
+      "email": "ice.s@xiaomi.com"
+    },
+    "total_customers": 65432,
+    "revenue": {
+      "amount": 76543,
+      "change": "+567%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Giảm giá Tháng 10 Thu",
+    "date": "01/10/2024",
+    "visibility": "Riêng tư",
+    "manager": {
+      "name": "Clairo",
+      "email": "clairo.c@xiaomi.com"
+    },
+    "total_customers": 54321,
+    "revenue": {
+      "amount": 65432,
+      "change": "+678%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Ưu đãi Phụ Nữ Việt Nam",
+    "date": "20/10/2024",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Phoebe Bridgers",
+      "email": "phoebe.b@xiaomi.com"
+    },
+    "total_customers": 43210,
+    "revenue": {
+      "amount": 54321,
+      "change": "+789%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Sale Cuối Tháng 10",
+    "date": "31/10/2024",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Lorde",
+      "email": "lorde.l@xiaomi.com"
+    },
+    "total_customers": 32109,
+    "revenue": {
+      "amount": 43210,
+      "change": "+890%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Khuyến mãi Tháng 11 Đông",
+    "date": "01/11/2024",
+    "visibility": "Riêng tư",
+    "manager": {
+      "name": "Mitski",
+      "email": "mitski.m@xiaomi.com"
+    },
+    "total_customers": 21098,
+    "revenue": {
+      "amount": 32109,
+      "change": "+901%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Giảm giá Nhà Giáo",
+    "date": "20/11/2024",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Billie Eilish",
+      "email": "billie.e2@xiaomi.com"
+    },
+    "total_customers": 10987,
+    "revenue": {
+      "amount": 21098,
+      "change": "+123%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Ưu đãi Cuối Năm",
+    "date": "01/12/2024",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Taylor Swift",
+      "email": "taylor.s2@xiaomi.com"
+    },
+    "total_customers": 98765,
+    "revenue": {
+      "amount": 10987,
+      "change": "+234%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Sale Noel 2024",
+    "date": "25/12/2024",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Ariana Grande",
+      "email": "ariana.g2@xiaomi.com"
+    },
+    "total_customers": 87654,
+    "revenue": {
+      "amount": 9876,
+      "change": "+345%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Khuyến mãi Laptop Gaming",
+    "date": "10/01/2024",
+    "visibility": "Riêng tư",
+    "manager": {
+      "name": "Kendrick Lamar",
+      "email": "kendrick.l@xiaomi.com"
+    },
+    "total_customers": 15432,
+    "revenue": {
+      "amount": 23456789,
+      "change": "+78%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Sale Điện Thoại Cao Cấp",
+    "date": "25/02/2024",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "J. Cole",
+      "email": "j.cole@xiaomi.com"
+    },
+    "total_customers": 28765,
+    "revenue": {
+      "amount": 45678912,
+      "change": "+92%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Giảm giá Phụ Kiện",
+    "date": "15/03/2024",
+    "visibility": "Riêng tư",
+    "manager": {
+      "name": "Travis Scott",
+      "email": "travis.s@xiaomi.com"
+    },
+    "total_customers": 19876,
+    "revenue": {
+      "amount": 12345678,
+      "change": "+45%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Ưu đãi Tablet",
+    "date": "08/04/2024",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Future",
+      "email": "future.f@xiaomi.com"
+    },
+    "total_customers": 34567,
+    "revenue": {
+      "amount": 34567890,
+      "change": "+123%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Sale Tai Nghe",
+    "date": "22/04/2024",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Lil Wayne",
+      "email": "lil.w@xiaomi.com"
+    },
+    "total_customers": 45123,
+    "revenue": {
+      "amount": 23456789,
+      "change": "+67%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Khuyến mãi Smartwatch",
+    "date": "10/05/2024",
+    "visibility": "Riêng tư",
+    "manager": {
+      "name": "Kanye West",
+      "email": "kanye.w@xiaomi.com"
+    },
+    "total_customers": 56789,
+    "revenue": {
+      "amount": 45678901,
+      "change": "+89%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Giảm giá Máy Tính Bảng",
+    "date": "28/05/2024",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Eminem",
+      "email": "eminem.e@xiaomi.com"
+    },
+    "total_customers": 67890,
+    "revenue": {
+      "amount": 56789012,
+      "change": "+156%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Ưu đãi Camera",
+    "date": "12/06/2024",
+    "visibility": "Riêng tư",
+    "manager": {
+      "name": "Jay-Z",
+      "email": "jay.z@xiaomi.com"
+    },
+    "total_customers": 78901,
+    "revenue": {
+      "amount": 67890123,
+      "change": "+178%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Sale Loa Bluetooth",
+    "date": "25/06/2024",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Nas",
+      "email": "nas.n@xiaomi.com"
+    },
+    "total_customers": 89012,
+    "revenue": {
+      "amount": 78901234,
+      "change": "+234%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Khuyến mãi Ốp Lưng",
+    "date": "08/07/2024",
+    "visibility": "Riêng tư",
+    "manager": {
+      "name": "50 Cent",
+      "email": "fifty.c@xiaomi.com"
+    },
+    "total_customers": 90123,
+    "revenue": {
+      "amount": 89012345,
+      "change": "+289%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Giảm giá Cáp Sạc",
+    "date": "20/07/2024",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Snoop Dogg",
+      "email": "snoop.d@xiaomi.com"
+    },
+    "total_customers": 12345,
+    "revenue": {
+      "amount": 90123456,
+      "change": "+345%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Ưu đãi Sạc Dự Phòng",
+    "date": "05/08/2024",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Dr. Dre",
+      "email": "dr.dre@xiaomi.com"
+    },
+    "total_customers": 23456,
+    "revenue": {
+      "amount": 12345678,
+      "change": "+456%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Sale Kính Cường Lực",
+    "date": "18/08/2024",
+    "visibility": "Riêng tư",
+    "manager": {
+      "name": "Ice Cube",
+      "email": "ice.c@xiaomi.com"
+    },
+    "total_customers": 34567,
+    "revenue": {
+      "amount": 23456789,
+      "change": "+567%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Khuyến mãi Giá Đỡ",
+    "date": "02/09/2024",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Eazy-E",
+      "email": "eazy.e@xiaomi.com"
+    },
+    "total_customers": 45678,
+    "revenue": {
+      "amount": 34567890,
+      "change": "+678%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Giảm giá Túi Đựng",
+    "date": "15/09/2024",
+    "visibility": "Riêng tư",
+    "manager": {
+      "name": "Tupac",
+      "email": "tupac.t@xiaomi.com"
+    },
+    "total_customers": 56789,
+    "revenue": {
+      "amount": 45678901,
+      "change": "+789%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Ưu đãi Bàn Phím",
+    "date": "28/09/2024",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Biggie Smalls",
+      "email": "biggie.s@xiaomi.com"
+    },
+    "total_customers": 67890,
+    "revenue": {
+      "amount": 56789012,
+      "change": "+890%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Sale Chuột Máy Tính",
+    "date": "12/10/2024",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Mac Miller",
+      "email": "mac.m@xiaomi.com"
+    },
+    "total_customers": 78901,
+    "revenue": {
+      "amount": 67890123,
+      "change": "+901%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Khuyến mãi Webcam",
+    "date": "25/10/2024",
+    "visibility": "Riêng tư",
+    "manager": {
+      "name": "Logic",
+      "email": "logic.l@xiaomi.com"
+    },
+    "total_customers": 89012,
+    "revenue": {
+      "amount": 78901234,
+      "change": "+123%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Giảm giá Micro",
+    "date": "08/11/2024",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Chance the Rapper",
+      "email": "chance.r@xiaomi.com"
+    },
+    "total_customers": 90123,
+    "revenue": {
+      "amount": 89012345,
+      "change": "+234%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Ưu đãi Đèn LED",
+    "date": "22/11/2024",
+    "visibility": "Riêng tư",
+    "manager": {
+      "name": "Tyler the Creator",
+      "email": "tyler.c@xiaomi.com"
+    },
+    "total_customers": 12345,
+    "revenue": {
+      "amount": 90123456,
+      "change": "+345%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Sale Quạt Mini",
+    "date": "05/12/2024",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Frank Ocean",
+      "email": "frank.o@xiaomi.com"
+    },
+    "total_customers": 23456,
+    "revenue": {
+      "amount": 12345678,
+      "change": "+456%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Khuyến mãi Máy Lọc Không Khí",
+    "date": "18/12/2024",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Anderson .Paak",
+      "email": "anderson.p@xiaomi.com"
+    },
+    "total_customers": 34567,
+    "revenue": {
+      "amount": 23456789,
+      "change": "+567%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Giảm giá Đồng Hồ Thông Minh",
+    "date": "30/12/2024",
+    "visibility": "Riêng tư",
+    "manager": {
+      "name": "Childish Gambino",
+      "email": "childish.g@xiaomi.com"
+    },
+    "total_customers": 45678,
+    "revenue": {
+      "amount": 34567890,
+      "change": "+678%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Ưu đãi Vòng Tay Thể Thao",
+    "date": "15/01/2025",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "A$AP Rocky",
+      "email": "asap.r@xiaomi.com"
+    },
+    "total_customers": 56789,
+    "revenue": {
+      "amount": 45678901,
+      "change": "+789%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Sale Kính Thực Tế Ảo",
+    "date": "28/01/2025",
+    "visibility": "Riêng tư",
+    "manager": {
+      "name": "Playboi Carti",
+      "email": "playboi.c@xiaomi.com"
+    },
+    "total_customers": 67890,
+    "revenue": {
+      "amount": 56789012,
+      "change": "+890%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Khuyến mãi Máy Chiếu",
+    "date": "10/02/2025",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Lil Uzi Vert",
+      "email": "lil.uzi@xiaomi.com"
+    },
+    "total_customers": 78901,
+    "revenue": {
+      "amount": 67890123,
+      "change": "+901%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Giảm giá Robot Hút Bụi",
+    "date": "22/02/2025",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "21 Savage",
+      "email": "savage.21@xiaomi.com"
+    },
+    "total_customers": 89012,
+    "revenue": {
+      "amount": 78901234,
+      "change": "+123%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Ưu đãi Máy Pha Cà Phê",
+    "date": "05/03/2025",
+    "visibility": "Riêng tư",
+    "manager": {
+      "name": "Offset",
+      "email": "offset.o@xiaomi.com"
+    },
+    "total_customers": 90123,
+    "revenue": {
+      "amount": 89012345,
+      "change": "+234%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Sale Nồi Cơm Điện",
+    "date": "18/03/2025",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Quavo",
+      "email": "quavo.q@xiaomi.com"
+    },
+    "total_customers": 12345,
+    "revenue": {
+      "amount": 90123456,
+      "change": "+345%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Khuyến mãi Máy Xay Sinh Tố",
+    "date": "30/03/2025",
+    "visibility": "Riêng tư",
+    "manager": {
+      "name": "Takeoff",
+      "email": "takeoff.t@xiaomi.com"
+    },
+    "total_customers": 23456,
+    "revenue": {
+      "amount": 12345678,
+      "change": "+456%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Giảm giá Lò Vi Sóng",
+    "date": "12/04/2025",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Kodak Black",
+      "email": "kodak.b@xiaomi.com"
+    },
+    "total_customers": 34567,
+    "revenue": {
+      "amount": 23456789,
+      "change": "+567%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Ưu đãi Máy Hút Bụi",
+    "date": "25/04/2025",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "DaBaby",
+      "email": "dababy.d@xiaomi.com"
+    },
+    "total_customers": 45678,
+    "revenue": {
+      "amount": 34567890,
+      "change": "+678%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Sale Máy Giặt Mini",
+    "date": "08/05/2025",
+    "visibility": "Riêng tư",
+    "manager": {
+      "name": "Roddy Ricch",
+      "email": "roddy.r@xiaomi.com"
+    },
+    "total_customers": 56789,
+    "revenue": {
+      "amount": 45678901,
+      "change": "+789%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Khuyến mãi Tủ Lạnh Mini",
+    "date": "20/05/2025",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Polo G",
+      "email": "polo.g@xiaomi.com"
+    },
+    "total_customers": 67890,
+    "revenue": {
+      "amount": 56789012,
+      "change": "+890%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Giảm giá Máy Sấy Tóc",
+    "date": "02/06/2025",
+    "visibility": "Riêng tư",
+    "manager": {
+      "name": "Lil Baby",
+      "email": "lil.baby@xiaomi.com"
+    },
+    "total_customers": 78901,
+    "revenue": {
+      "amount": 67890123,
+      "change": "+901%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Ưu đãi Máy Cạo Râu",
+    "date": "15/06/2025",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Gunna",
+      "email": "gunna.g@xiaomi.com"
+    },
+    "total_customers": 89012,
+    "revenue": {
+      "amount": 78901234,
+      "change": "+123%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Sale Máy Massage",
+    "date": "28/06/2025",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Young Thug",
+      "email": "young.t@xiaomi.com"
+    },
+    "total_customers": 90123,
+    "revenue": {
+      "amount": 89012345,
+      "change": "+234%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Khuyến mãi Đèn Ngủ",
+    "date": "10/07/2025",
+    "visibility": "Riêng tư",
+    "manager": {
+      "name": "Juice WRLD",
+      "email": "juice.w@xiaomi.com"
+    },
+    "total_customers": 12345,
+    "revenue": {
+      "amount": 90123456,
+      "change": "+345%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Giảm giá Máy Đo Huyết Áp",
+    "date": "22/07/2025",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "XXXTentacion",
+      "email": "xxx.t@xiaomi.com"
+    },
+    "total_customers": 23456,
+    "revenue": {
+      "amount": 12345678,
+      "change": "+456%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Ưu đãi Cân Điện Tử",
+    "date": "05/08/2025",
+    "visibility": "Riêng tư",
+    "manager": {
+      "name": "Ski Mask",
+      "email": "ski.m@xiaomi.com"
+    },
+    "total_customers": 34567,
+    "revenue": {
+      "amount": 23456789,
+      "change": "+567%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Sale Máy Đo Nhiệt Độ",
+    "date": "18/08/2025",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Denzel Curry",
+      "email": "denzel.c@xiaomi.com"
+    },
+    "total_customers": 45678,
+    "revenue": {
+      "amount": 34567890,
+      "change": "+678%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Khuyến mãi Máy Tạo Ẩm",
+    "date": "30/08/2025",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "JID",
+      "email": "jid.j@xiaomi.com"
+    },
+    "total_customers": 56789,
+    "revenue": {
+      "amount": 45678901,
+      "change": "+789%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Giảm giá Máy Khử Mùi",
+    "date": "12/09/2025",
+    "visibility": "Riêng tư",
+    "manager": {
+      "name": "Earthgang",
+      "email": "earthgang.e@xiaomi.com"
+    },
+    "total_customers": 67890,
+    "revenue": {
+      "amount": 56789012,
+      "change": "+890%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Ưu đãi Máy Phun Sương",
+    "date": "25/09/2025",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Ari Lennox",
+      "email": "ari.l@xiaomi.com"
+    },
+    "total_customers": 78901,
+    "revenue": {
+      "amount": 67890123,
+      "change": "+901%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Sale Máy Tính Để Bàn",
+    "date": "08/10/2025",
+    "visibility": "Riêng tư",
+    "manager": {
+      "name": "Bas",
+      "email": "bas.b@xiaomi.com"
+    },
+    "total_customers": 89012,
+    "revenue": {
+      "amount": 78901234,
+      "change": "+123%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Khuyến mãi Màn Hình Máy Tính",
+    "date": "20/10/2025",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Cozz",
+      "email": "cozz.c@xiaomi.com"
+    },
+    "total_customers": 90123,
+    "revenue": {
+      "amount": 89012345,
+      "change": "+234%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Giảm giá Máy In",
+    "date": "02/11/2025",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Lute",
+      "email": "lute.l@xiaomi.com"
+    },
+    "total_customers": 12345,
+    "revenue": {
+      "amount": 90123456,
+      "change": "+345%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Ưu đãi Máy Scan",
+    "date": "15/11/2025",
+    "visibility": "Riêng tư",
+    "manager": {
+      "name": "6LACK",
+      "email": "six.l@xiaomi.com"
+    },
+    "total_customers": 23456,
+    "revenue": {
+      "amount": 12345678,
+      "change": "+456%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Sale Máy Photocopy",
+    "date": "28/11/2025",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Omen",
+      "email": "omen.o@xiaomi.com"
+    },
+    "total_customers": 34567,
+    "revenue": {
+      "amount": 23456789,
+      "change": "+567%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Khuyến mãi Máy Fax",
+    "date": "10/12/2025",
+    "visibility": "Riêng tư",
+    "manager": {
+      "name": "Keem",
+      "email": "keem.k@xiaomi.com"
+    },
+    "total_customers": 45678,
+    "revenue": {
+      "amount": 34567890,
+      "change": "+678%",
+      "compared_to": "với tuần trước"
+    }
+  },
+  {
+    "name": "Giảm giá Máy Hủy Tài Liệu",
+    "date": "22/12/2025",
+    "visibility": "Công khai",
+    "manager": {
+      "name": "Russ",
+      "email": "russ.r@xiaomi.com"
+    },
+    "total_customers": 56789,
+    "revenue": {
+      "amount": 45678901,
+      "change": "+789%",
       "compared_to": "với tuần trước"
     }
   }
