@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Search, Share, Copy, Settings } from 'lucide-react';
@@ -258,7 +257,7 @@ const CampaignDetail = () => {
               </ScrollArea>
             </div>
 
-            {/* Fixed Footer with Pagination and User Info */}
+            {/* Fixed Footer with Pagination only */}
             <div className="border-t border-gray-200 flex-shrink-0">
               {/* Pagination */}
               <div className="px-4 py-3 flex items-center justify-between">
@@ -282,16 +281,6 @@ const CampaignDetail = () => {
                   <Button variant="outline" size="sm" className="bg-orange-500 text-white border-orange-500">1</Button>
                   <Button variant="outline" size="sm">2</Button>
                   <Button variant="outline" size="sm">&gt;</Button>
-                </div>
-              </div>
-
-              {/* Bottom User Info */}
-              <div className="border-t border-gray-200 p-4 flex items-center justify-center">
-                <div className="flex items-center space-x-2">
-                  <div className="w-6 h-6 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 flex items-center justify-center text-white text-xs">
-                    B
-                  </div>
-                  <span className="text-sm text-gray-600">beyonce@xiaomi.com</span>
                 </div>
               </div>
             </div>
