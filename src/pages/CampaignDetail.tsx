@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Search, Share, Copy, Settings } from 'lucide-react';
@@ -12,118 +13,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import customersData from '../../customers.json';
 
 const CampaignDetail = () => {
   const { campaignName } = useParams();
-
-  // Mock customer data - in a real app, this would come from an API
-  const customers = [
-    {
-      name: 'Nicki Minaj',
-      email: 'nicki.minaj@xiaomi.com',
-      phone: '(+84) 674 345 124',
-      address: '88 Hai Ba Trung\nHoan Kiem • Hanoi',
-      avatar: '🔴'
-    },
-    {
-      name: 'Adele',
-      email: 'adele.ad@xiaomi.com',
-      phone: '(+84) 345 763 222',
-      address: '322 Tran Khat Chan\nHoan Kiem • Hanoi',
-      avatar: '🟡'
-    },
-    {
-      name: 'Rihanna',
-      email: 'rihanna.ft@xiaomi.com',
-      phone: '(+84) 674 345 124',
-      address: '345 Pham Van Dong\nCau Giay • Ho Chi Minh',
-      avatar: '🔵'
-    },
-    {
-      name: 'Mariah Carey',
-      email: 'mariah.cr@xiaomi.com',
-      phone: '(+84) 986 598 765',
-      address: '26 Vo Thi Sau\nDa Kao • Ho Chi Minh',
-      avatar: '⚫'
-    },
-    {
-      name: 'Pink',
-      email: 'pink.p@xiaomi.com',
-      phone: '(+84) 234 567 890',
-      address: '12 Le Loi\nHa Dong • Hanoi',
-      avatar: '🔴'
-    },
-    {
-      name: 'Ariana Grande',
-      email: 'ariana.gr@xiaomi.com',
-      phone: '(+84) 456 789 012',
-      address: '789 Nguyen Trai\nThuy Khue • Ho Chi Minh',
-      avatar: '🟢'
-    },
-    {
-      name: 'Megan Thee Stallion',
-      email: 'megan.ts@xiaomi.com',
-      phone: '(+84) 678 901 234',
-      address: '456 Nguyen Van Cu\nThanh Xuan • Hanoi',
-      avatar: '🟡'
-    },
-    {
-      name: 'Dua Lipa',
-      email: 'dua.lipa@xiaomi.com',
-      phone: '(+84) 890 123 456',
-      address: '102 Tran Hung Dao\nBinh Thanh • Ho Chi Minh',
-      avatar: '🔵'
-    },
-    {
-      name: 'Lady Gaga',
-      email: 'lady.gaga@xiaomi.com',
-      phone: '(+84) 012 345 678',
-      address: '88 Hai Ba Trung\nBa Dinh • Hanoi',
-      avatar: '🟣'
-    },
-    {
-      name: 'Beyoncé',
-      email: 'beyonce.k@xiaomi.com',
-      phone: '(+84) 234 567 890',
-      address: '231 Ton Duc Thang\nDistrict 1 • Ho Chi Minh',
-      avatar: '🔴'
-    },
-    {
-      name: 'Taylor Swift',
-      email: 'taylor.sw@xiaomi.com',
-      phone: '(+84) 456 789 012',
-      address: '72 Phan Dinh Phung\nDong Da • Hanoi',
-      avatar: '🟣'
-    },
-    {
-      name: 'Katy Perry',
-      email: 'katy.perry@xiaomi.com',
-      phone: '(+84) 678 901 234',
-      address: '155 Le Duan\nTan Binh • Ho Chi Minh',
-      avatar: '🔵'
-    },
-    {
-      name: 'Selena Gomez',
-      email: 'selena.g@xiaomi.com',
-      phone: '(+84) 890 123 456',
-      address: '999 Vo Van Tan\nBa Dinh • Hanoi',
-      avatar: '🔵'
-    },
-    {
-      name: 'Jennifer Lopez',
-      email: 'jennifer.l@xiaomi.com',
-      phone: '(+84) 890 123 456',
-      address: '634 Dien Bien Phu\nPhu Nhuan • Ho Chi Minh',
-      avatar: '🟢'
-    },
-    {
-      name: 'Shakira',
-      email: 'shakira.s@xiaomi.com',
-      phone: '(+84) 890 123 456',
-      address: '111 Le Quang Dinh\nBinh Thanh • Ho Chi Minh',
-      avatar: '⚪'
-    }
-  ];
 
   return (
     <div className="flex h-screen bg-gray-50">
@@ -226,23 +119,25 @@ const CampaignDetail = () => {
                   
                   {/* Table Body */}
                   <div className="divide-y divide-gray-200">
-                    {customers.map((customer, index) => (
+                    {customersData.map((customer, index) => (
                       <div key={index} className="grid grid-cols-4 gap-4 p-4 hover:bg-gray-50">
                         <div className="flex items-center space-x-3">
                           <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center text-white text-sm">
-                            {customer.name.charAt(0)}
+                            {customer.khachHang.charAt(0)}
                           </div>
                           <div>
-                            <div className="font-medium text-gray-900">{customer.name}</div>
+                            <div className="font-medium text-gray-900">{customer.khachHang}</div>
                             <div className="text-sm text-gray-500">{customer.email}</div>
                           </div>
                         </div>
                         <div className="flex items-center text-gray-900">
-                          {customer.phone}
+                          {customer.soDienThoai}
                         </div>
                         <div className="flex items-center">
-                          <div className="text-sm text-gray-900 whitespace-pre-line">
-                            {customer.address}
+                          <div className="text-sm text-gray-900">
+                            {customer.diaChi}
+                            <br />
+                            {customer.quan} • {customer.thanhPho}
                           </div>
                         </div>
                         <div className="flex items-center justify-end">
