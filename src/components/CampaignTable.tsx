@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ChevronDown, Edit, Trash2, MoreHorizontal, ArrowUpDown, Filter, Users, Eye, EyeOff } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -53,6 +54,7 @@ interface CampaignTableProps {
 }
 
 const CampaignTable = ({ campaigns, searchTerm }: CampaignTableProps) => {
+  const navigate = useNavigate();
   const [sortField, setSortField] = useState<string>('');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
   const [visibilityFilter, setVisibilityFilter] = useState<string>('all');
@@ -148,6 +150,10 @@ const CampaignTable = ({ campaigns, searchTerm }: CampaignTableProps) => {
         {visibility}
       </button>
     );
+  };
+
+  const handleCampaignClick = (campaignName: string) => {
+    navigate(`/campaign/${encodeURIComponent(campaignName)}`);
   };
 
   const handleEdit = (campaign: Campaign) => {
@@ -287,7 +293,12 @@ const CampaignTable = ({ campaigns, searchTerm }: CampaignTableProps) => {
                           </TableCell>
                           <TableCell>
                             <div>
-                              <div className="font-medium text-gray-900">{campaign.name}</div>
+                              <div 
+                                className="font-medium text-gray-900 cursor-pointer hover:text-orange-600 hover:underline"
+                                onClick={() => handleCampaignClick(campaign.name)}
+                              >
+                                {campaign.name}
+                              </div>
                               <div className="text-sm text-gray-500">{campaign.date}</div>
                             </div>
                           </TableCell>
