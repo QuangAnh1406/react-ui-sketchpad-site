@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Search, Share, Copy, Settings } from 'lucide-react';
 import CampaignSidebar from '@/components/CampaignSidebar';
@@ -17,6 +17,43 @@ import customersData from '../../customers.json';
 
 const CampaignDetail = () => {
   const { campaignName } = useParams();
+  const [pageSize, setPageSize] = useState(50);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // Calculate pagination
+  const totalItems = customersData.length;
+  const totalPages = Math.ceil(totalItems / pageSize);
+  const startIndex = (currentPage - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
+  const currentPageCustomers = useMemo(() => {
+    return customersData.slice(startIndex, endIndex);
+  }, [startIndex, endIndex]);
+
+  const handlePageSizeChange = (newPageSize: string) => {
+    setPageSize(parseInt(newPageSize));
+    setCurrentPage(1); // Reset to first page when changing page size
+  };
+
+  const generatePageNumbers = () => {
+    const pages = [];
+    const maxVisiblePages = 5;
+    
+    if (totalPages <= maxVisiblePages) {
+      for (let i = 1; i <= totalPages; i++) {
+        pages.push(i);
+      }
+    } else {
+      if (currentPage <= 3) {
+        pages.push(1, 2, 3, '...', totalPages);
+      } else if (currentPage >= totalPages - 2) {
+        pages.push(1, '...', totalPages - 2, totalPages - 1, totalPages);
+      } else {
+        pages.push(1, '...', currentPage - 1, currentPage, currentPage + 1, '...', totalPages);
+      }
+    }
+    
+    return pages;
+  };
 
   return (
     <div className="flex h-screen bg-gray-50">
@@ -119,7 +156,7 @@ const CampaignDetail = () => {
                   
                   {/* Table Body */}
                   <div className="divide-y divide-gray-200">
-                    {customersData.map((customer, index) => (
+                    {currentPageCustomers.map((customer, index) => (
                       <div key={index} className="grid grid-cols-4 gap-4 p-4 hover:bg-gray-50">
                         <div className="flex items-center space-x-3">
                           <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center text-white text-sm">
@@ -152,12 +189,11 @@ const CampaignDetail = () => {
               </ScrollArea>
             </div>
 
-            {/* Fixed Footer with Pagination only */}
+            {/* Fixed Footer with Pagination */}
             <div className="border-t border-gray-200 flex-shrink-0">
-              {/* Pagination */}
               <div className="px-4 py-3 flex items-center justify-between">
                 <div className="flex items-center space-x-2">
-                  <Select defaultValue="50">
+                  <Select value={pageSize.toString()} onValueChange={handlePageSizeChange}>
                     <SelectTrigger className="w-20">
                       <SelectValue />
                     </SelectTrigger>
@@ -169,13 +205,46 @@ const CampaignDetail = () => {
                     </SelectContent>
                   </Select>
                   <span className="text-sm text-gray-500">mục trên mỗi trang</span>
+                  <span className="text-sm text-gray-500">
+                    • Hiển thị {startIndex + 1}-{Math.min(endIndex, totalItems)} trong {totalItems} mục
+                  </span>
                 </div>
                 
                 <div className="flex items-center space-x-2">
-                  <Button variant="outline" size="sm">&lt;</Button>
-                  <Button variant="outline" size="sm" className="bg-orange-500 text-white border-orange-500">1</Button>
-                  <Button variant="outline" size="sm">2</Button>
-                  <Button variant="outline" size="sm">&gt;</Button>
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    disabled={currentPage === 1}
+                    onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                  >
+                    &lt;
+                  </Button>
+                  
+                  {generatePageNumbers().map((page, index) => (
+                    <React.Fragment key={index}>
+                      {page === '...' ? (
+                        <span className="text-sm text-gray-500">...</span>
+                      ) : (
+                        <Button 
+                          variant="outline" 
+                          size="sm" 
+                          className={currentPage === page ? "bg-orange-500 text-white border-orange-500" : ""}
+                          onClick={() => setCurrentPage(page as number)}
+                        >
+                          {page}
+                        </Button>
+                      )}
+                    </React.Fragment>
+                  ))}
+                  
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    disabled={currentPage === totalPages}
+                    onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                  >
+                    &gt;
+                  </Button>
                 </div>
               </div>
             </div>
