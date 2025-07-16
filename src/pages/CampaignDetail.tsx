@@ -5,6 +5,7 @@ import { ArrowLeft, Search, Share, Copy, Settings } from 'lucide-react';
 import CampaignSidebar from '@/components/CampaignSidebar';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import {
   Select,
   SelectContent,
@@ -130,7 +131,7 @@ const CampaignDetail = () => {
       <CampaignSidebar />
       <div className="flex-1 flex flex-col">
         {/* Header */}
-        <div className="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+        <div className="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between flex-shrink-0">
           <div className="flex items-center space-x-4">
             <Link to="/">
               <Button variant="ghost" size="sm" className="p-2">
@@ -154,7 +155,7 @@ const CampaignDetail = () => {
         </div>
 
         {/* Tab Navigation */}
-        <div className="bg-white border-b border-gray-200 px-6">
+        <div className="bg-white border-b border-gray-200 px-6 flex-shrink-0">
           <div className="flex space-x-8">
             <button className="py-3 px-1 border-b-2 border-orange-500 text-orange-600 font-medium">
               Tổng quan
@@ -169,9 +170,9 @@ const CampaignDetail = () => {
         </div>
 
         {/* Content */}
-        <div className="flex-1 flex">
+        <div className="flex-1 flex min-h-0">
           {/* Left Panel - Campaign Info */}
-          <div className="w-80 bg-white border-r border-gray-200 p-6">
+          <div className="w-80 bg-white border-r border-gray-200 p-6 flex-shrink-0">
             <div className="mb-6">
               <h3 className="text-lg font-semibold mb-2">Thông tin chung</h3>
               <div className="space-y-3">
@@ -194,9 +195,9 @@ const CampaignDetail = () => {
           </div>
 
           {/* Right Panel - Customer List */}
-          <div className="flex-1 flex flex-col">
+          <div className="flex-1 flex flex-col bg-white">
             {/* Search and Controls */}
-            <div className="bg-white border-b border-gray-200 p-4">
+            <div className="border-b border-gray-200 p-4 flex-shrink-0">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg font-semibold">Danh sách khách hàng</h3>
                 <Button className="bg-green-600 hover:bg-green-700 text-white">
@@ -212,76 +213,86 @@ const CampaignDetail = () => {
               </div>
             </div>
 
-            {/* Customer Table */}
-            <div className="flex-1 bg-white">
-              <div className="grid grid-cols-4 gap-4 p-4 border-b border-gray-200 bg-gray-50 text-sm font-medium text-gray-700">
-                <div>Khách hàng</div>
-                <div>Số điện thoại</div>
-                <div>Địa chỉ</div>
-                <div></div>
-              </div>
-              <div className="divide-y divide-gray-200">
-                {customers.map((customer, index) => (
-                  <div key={index} className="grid grid-cols-4 gap-4 p-4 hover:bg-gray-50">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center text-white text-sm">
-                        {customer.name.charAt(0)}
-                      </div>
-                      <div>
-                        <div className="font-medium text-gray-900">{customer.name}</div>
-                        <div className="text-sm text-gray-500">{customer.email}</div>
-                      </div>
-                    </div>
-                    <div className="flex items-center text-gray-900">
-                      {customer.phone}
-                    </div>
-                    <div className="flex items-center">
-                      <div className="text-sm text-gray-900 whitespace-pre-line">
-                        {customer.address}
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-end">
-                      <Button variant="ghost" size="sm">
-                        <Copy className="h-4 w-4" />
-                      </Button>
-                    </div>
+            {/* Scrollable Customer Table */}
+            <div className="flex-1 min-h-0">
+              <ScrollArea className="h-full">
+                <div>
+                  {/* Table Header */}
+                  <div className="grid grid-cols-4 gap-4 p-4 border-b border-gray-200 bg-gray-50 text-sm font-medium text-gray-700 sticky top-0 z-10">
+                    <div>Khách hàng</div>
+                    <div>Số điện thoại</div>
+                    <div>Địa chỉ</div>
+                    <div></div>
                   </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Footer with Pagination */}
-            <div className="bg-white border-t border-gray-200 px-4 py-3 flex items-center justify-between">
-              <div className="flex items-center space-x-2">
-                <Select defaultValue="50">
-                  <SelectTrigger className="w-20">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="10">10</SelectItem>
-                    <SelectItem value="25">25</SelectItem>
-                    <SelectItem value="50">50</SelectItem>
-                    <SelectItem value="100">100</SelectItem>
-                  </SelectContent>
-                </Select>
-                <span className="text-sm text-gray-500">mục trên mỗi trang</span>
-              </div>
-              
-              <div className="flex items-center space-x-2">
-                <Button variant="outline" size="sm">&lt;</Button>
-                <Button variant="outline" size="sm" className="bg-orange-500 text-white border-orange-500">1</Button>
-                <Button variant="outline" size="sm">2</Button>
-                <Button variant="outline" size="sm">&gt;</Button>
-              </div>
-            </div>
-
-            {/* Bottom User Info */}
-            <div className="bg-white border-t border-gray-200 p-4 flex items-center justify-center">
-              <div className="flex items-center space-x-2">
-                <div className="w-6 h-6 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 flex items-center justify-center text-white text-xs">
-                  B
+                  
+                  {/* Table Body */}
+                  <div className="divide-y divide-gray-200">
+                    {customers.map((customer, index) => (
+                      <div key={index} className="grid grid-cols-4 gap-4 p-4 hover:bg-gray-50">
+                        <div className="flex items-center space-x-3">
+                          <div className="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center text-white text-sm">
+                            {customer.name.charAt(0)}
+                          </div>
+                          <div>
+                            <div className="font-medium text-gray-900">{customer.name}</div>
+                            <div className="text-sm text-gray-500">{customer.email}</div>
+                          </div>
+                        </div>
+                        <div className="flex items-center text-gray-900">
+                          {customer.phone}
+                        </div>
+                        <div className="flex items-center">
+                          <div className="text-sm text-gray-900 whitespace-pre-line">
+                            {customer.address}
+                          </div>
+                        </div>
+                        <div className="flex items-center justify-end">
+                          <Button variant="ghost" size="sm">
+                            <Copy className="h-4 w-4" />
+                          </Button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <span className="text-sm text-gray-600">beyonce@xiaomi.com</span>
+              </ScrollArea>
+            </div>
+
+            {/* Fixed Footer with Pagination and User Info */}
+            <div className="border-t border-gray-200 flex-shrink-0">
+              {/* Pagination */}
+              <div className="px-4 py-3 flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  <Select defaultValue="50">
+                    <SelectTrigger className="w-20">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="10">10</SelectItem>
+                      <SelectItem value="25">25</SelectItem>
+                      <SelectItem value="50">50</SelectItem>
+                      <SelectItem value="100">100</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <span className="text-sm text-gray-500">mục trên mỗi trang</span>
+                </div>
+                
+                <div className="flex items-center space-x-2">
+                  <Button variant="outline" size="sm">&lt;</Button>
+                  <Button variant="outline" size="sm" className="bg-orange-500 text-white border-orange-500">1</Button>
+                  <Button variant="outline" size="sm">2</Button>
+                  <Button variant="outline" size="sm">&gt;</Button>
+                </div>
+              </div>
+
+              {/* Bottom User Info */}
+              <div className="border-t border-gray-200 p-4 flex items-center justify-center">
+                <div className="flex items-center space-x-2">
+                  <div className="w-6 h-6 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 flex items-center justify-center text-white text-xs">
+                    B
+                  </div>
+                  <span className="text-sm text-gray-600">beyonce@xiaomi.com</span>
+                </div>
               </div>
             </div>
           </div>
