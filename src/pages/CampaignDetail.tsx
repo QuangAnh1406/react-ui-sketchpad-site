@@ -60,7 +60,7 @@ const CampaignDetail = () => {
       <CampaignSidebar />
       <div className="flex-1 flex flex-col">
         {/* Header */}
-        <div className="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between flex-shrink-0">
+        <div className="bg-white border-b border-gray-200 px-6 py-3.5 flex items-center justify-between flex-shrink-0">
           <div className="flex items-center space-x-4">
             <Link to="/">
               <Button variant="ghost" size="sm" className="p-2">
@@ -129,9 +129,6 @@ const CampaignDetail = () => {
             <div className="border-b border-gray-200 p-4 flex-shrink-0">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-lg font-semibold">Danh sách khách hàng</h3>
-                <Button className="bg-green-600 hover:bg-green-700 text-white">
-                  Tạo chiến dịch thành công
-                </Button>
               </div>
               <div className="relative">
                 <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
