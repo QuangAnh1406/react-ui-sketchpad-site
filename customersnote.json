@@ -1,0 +1,72 @@
+[
+    {
+        "name": "Rihanna",
+        "contact_date": "03/06/2024",
+        "feedback": "Tích cực",
+        "contact_count": "2 lần - {{phuongThucLienLac}}",
+        "note": "Khách hàng đã mua TV trong đợt trước và hiện đang cần bán để tăng cường điều khiển cho dịp Giáng Sinh này."
+    },
+    {
+        "name": "Beyoncé",
+        "contact_date": "03/06/2024",
+        "feedback": "Tiêu cực",
+        "contact_count": "2 lần - {{phuongThucLienLac}}",
+        "note": "Khách hàng đã sở hữu TV từ đợt trước, giờ muốn bán để nâng cấp điều khiển cho mùa lễ Giáng Sinh."
+    },
+    {
+        "name": "Taylor Swift",
+        "contact_date": "08/06/2024",
+        "feedback": "Tiêu cực",
+        "contact_count": "2 lần - {{phuongThucLienLac}}",
+        "note": "KH mua TV đợt trước, cần bán gia tăng điều khiển đợt XMAS này."
+    },
+    {
+        "name": "Adele",
+        "contact_date": "09/06/2024",
+        "feedback": "Tiêu cực",
+        "contact_count": "2 lần - {{phuongThucLienLac}}",
+        "note": "KH đã có TV từ trước, liên hệ để tư vấn nâng cấp điều khiển dịp lễ."
+    },
+    {
+        "name": "Bruno Mars",
+        "contact_date": "04/06/2024",
+        "feedback": "Tích cực",
+        "contact_count": "2 lần - {{phuongThucLienLac}}",
+        "note": "Khách hàng đã mua TV trong đợt trước và hiện đang cần bán để tăng cường điều khiển cho dịp Giáng Sinh này."
+    },
+    {
+        "name": "Ed Sheeran",
+        "contact_date": "09/06/2024",
+        "feedback": "Tiêu cực",
+        "contact_count": "2 lần - {{phuongThucLienLac}}",
+        "note": "KH mua TV đợt trước, cần bán gia tăng điều khiển đợt XMAS này."
+    },
+    {
+        "name": "Lady Gaga",
+        "contact_date": "05/06/2024",
+        "feedback": "Tiêu cực",
+        "contact_count": "2 lần - {{phuongThucLienLac}}",
+        "note": "Khách hàng đã sở hữu TV từ đợt trước, giờ muốn bán để nâng cấp điều khiển cho mùa lễ Giáng Sinh."
+    },
+    {
+        "name": "Drake",
+        "contact_date": "08/06/2024",
+        "feedback": "Tích cực",
+        "contact_count": "2 lần - {{phuongThucLienLac}}",
+        "note": "Khách hàng đã sở hữu TV từ đợt trước, giờ muốn bán để nâng cấp điều khiển cho mùa lễ Giáng Sinh."
+    },
+    {
+        "name": "Katy Perry",
+        "contact_date": "04/06/2024",
+        "feedback": "Tích cực",
+        "contact_count": "2 lần - {{phuongThucLienLac}}",
+        "note": "Khách hàng đã mua TV trong đợt trước và hiện đang cần bán để tăng cường điều khiển cho dịp Giáng Sinh này."
+    },
+    {
+        "name": "Justin Bieber",
+        "contact_date": "09/06/2024",
+        "feedback": "Tiêu cực",
+        "contact_count": "2 lần - {{phuongThucLienLac}}",
+        "note": "KH đã có TV từ trước, liên hệ để tư vấn nâng cấp điều khiển dịp lễ."
+    }
+]

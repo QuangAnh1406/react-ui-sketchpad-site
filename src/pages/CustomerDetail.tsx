@@ -62,7 +62,7 @@ const CustomerDetail = () => {
         {/* Header */}
         <div className="bg-white border-b border-gray-200 px-6 py-3.5 flex items-center justify-between flex-shrink-0">
           <div className="flex items-center space-x-4">
-            <Link to="/">
+            <Link to="/campaign/:campaignName">
               <Button variant="ghost" size="sm" className="p-2">
                 <ArrowLeft className="h-4 w-4" />
               </Button>
@@ -95,35 +95,35 @@ const CustomerDetail = () => {
               <h3 className="text-lg font-semibold mb-4">Thông tin chung</h3>
               <div className="space-y-4">
                 <div>
-                  <span className="text-sm text-gray-500 block">Họ và tên</span>
+                  <span className="text-xs text-gray-500 block">Họ và tên</span>
                   <div className="font-medium">{customer.name}</div>
                 </div>
                 <div>
-                  <span className="text-sm text-gray-500 block">Email</span>
+                  <span className="text-xs text-gray-500 block">Email</span>
                   <div className="font-medium">{customer.email}</div>
                 </div>
                 <div>
-                  <span className="text-sm text-gray-500 block">Giới tính</span>
+                  <span className="text-xs text-gray-500 block">Giới tính</span>
                   <div className="font-medium">{customer.gender}</div>
                 </div>
                 <div>
-                  <span className="text-sm text-gray-500 block">Địa chỉ</span>
+                  <span className="text-xs text-gray-500 block">Địa chỉ</span>
                   <div className="font-medium">{customer.address}</div>
                 </div>
                 <div>
-                  <span className="text-sm text-gray-500 block">Số điện thoại</span>
+                  <span className="text-xs text-gray-500 block">Số điện thoại</span>
                   <div className="font-medium">{customer.phoneNumber}</div>
                 </div>
                 <div>
-                  <span className="text-sm text-gray-500 block">Quận</span>
+                  <span className="text-xs text-gray-500 block">Quận</span>
                   <div className="font-medium">{customer.district}</div>
                 </div>
                 <div>
-                  <span className="text-sm text-gray-500 block">Thành phố</span>
+                  <span className="text-xs text-gray-500 block">Thành phố</span>
                   <div className="font-medium">{customer.province}</div>
                 </div>
                 <div>
-                  <span className="text-sm text-gray-500 block">Ngày tạo</span>
+                  <span className="text-xs text-gray-500 block">Ngày tạo</span>
                   <div className="font-medium">{customer.createdTimestamp}</div>
                 </div>
               </div>
@@ -151,7 +151,6 @@ const CustomerDetail = () => {
             {/* Controls */}
             <div className="border-b border-gray-200 p-4 flex-shrink-0">
               <div className="flex items-center justify-between mb-2">
-                <h3 className="text-lg font-semibold">Danh sách đơn hàng</h3>
                 <div className="flex items-center space-x-4">
                   <Button variant="outline" size="sm">
                     <SortAsc className="h-4 w-4 mr-2" />
