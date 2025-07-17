@@ -160,7 +160,12 @@ const CampaignDetail = () => {
                             {customer.khachHang.charAt(0)}
                           </div>
                           <div>
-                            <div className="font-medium text-gray-900">{customer.khachHang}</div>
+                            <Link 
+                              to={`/customer/${encodeURIComponent(customer.khachHang)}`}
+                              className="font-medium text-gray-900 hover:text-blue-600 cursor-pointer"
+                            >
+                              {customer.khachHang}
+                            </Link>
                             <div className="text-sm text-gray-500">{customer.email}</div>
                           </div>
                         </div>
@@ -202,9 +207,6 @@ const CampaignDetail = () => {
                     </SelectContent>
                   </Select>
                   <span className="text-sm text-gray-500">mục trên mỗi trang</span>
-                  <span className="text-sm text-gray-500">
-                    • Hiển thị {startIndex + 1}-{Math.min(endIndex, totalItems)} trong {totalItems} mục
-                  </span>
                 </div>
                 
                 <div className="flex items-center space-x-2">
