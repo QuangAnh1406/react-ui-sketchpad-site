@@ -29,24 +29,31 @@ const CustomerDetail = () => {
   // For now, we'll use the first entry from customersdetail.json as sample data
   const customerDetailInfo = customersDetailData[0] || {};
 
-  // Merge customer data
+  // Merge customer data with proper type safety
   const customer = {
     name: customerBasicInfo?.khachHang || decodeURIComponent(customerName || ''),
     email: customerBasicInfo?.email || '',
     phoneNumber: customerBasicInfo?.soDienThoai || '',
     address: customerBasicInfo?.diaChi || '',
-    district: customerBasicInfo?.quan || customerDetailInfo.district || '',
-    province: customerBasicInfo?.thanhPho || customerDetailInfo.province || '',
-    gender: customerDetailInfo.gender || 'Nam',
-    createdTimestamp: customerDetailInfo.createdTimestamp || '2024-01-01',
-    orders: customerDetailInfo.orders || []
+    district: customerBasicInfo?.quan || (customerDetailInfo as any).district || '',
+    province: customerBasicInfo?.thanhPho || (customerDetailInfo as any).province || '',
+    gender: (customerDetailInfo as any).gender || 'Nam',
+    createdTimestamp: (customerDetailInfo as any).createdTimestamp || '2024-01-01',
+    orders: (customerDetailInfo as any).orders || []
   };
 
   const orders = customer.orders;
 
   // Calculate totals
-  const totalAmount = orders.reduce((sum, order) => sum + (order.price || 0) * (order.quantity || 0), 0);
+  const totalAmount = orders.reduce((sum: number, order: any) => sum + (order.price || 0) * (order.quantity || 0), 0);
   const totalOrders = orders.length;
+
+  // Sample notes data for the right table
+  const notes = [
+    { id: 1, date: '2024-01-15', content: 'Khách hàng yêu cầu giao hàng vào buổi sáng' },
+    { id: 2, date: '2024-01-20', content: 'Đã liên hệ xác nhận đơn hàng' },
+    { id: 3, date: '2024-01-25', content: 'Khách hàng hài lòng với sản phẩm' },
+  ];
 
   return (
     <div className="flex h-screen bg-gray-50">
@@ -139,11 +146,12 @@ const CustomerDetail = () => {
             </div>
           </div>
 
-          {/* Right Panel - Orders List */}
-          <div className="flex-1 flex flex-col bg-white">
+          {/* Middle Panel - Orders List */}
+          <div className="flex-1 flex flex-col bg-white border-r border-gray-200">
             {/* Controls */}
             <div className="border-b border-gray-200 p-4 flex-shrink-0">
-              <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="text-lg font-semibold">Danh sách đơn hàng</h3>
                 <div className="flex items-center space-x-4">
                   <Button variant="outline" size="sm">
                     <SortAsc className="h-4 w-4 mr-2" />
@@ -162,19 +170,18 @@ const CustomerDetail = () => {
               <ScrollArea className="h-full">
                 <div>
                   {/* Table Header */}
-                  <div className="grid grid-cols-6 gap-4 p-4 border-b border-gray-200 bg-gray-50 text-sm font-medium text-gray-700 sticky top-0 z-10">
+                  <div className="grid grid-cols-5 gap-4 p-4 border-b border-gray-200 bg-gray-50 text-sm font-medium text-gray-700 sticky top-0 z-10">
                     <div>Đơn hàng</div>
                     <div>Model</div>
                     <div>Số lượng</div>
                     <div>Giá (VND)</div>
                     <div>Tổng tiền</div>
-                    <div>Ghi chú</div>
                   </div>
                   
                   {/* Table Body */}
                   <div className="divide-y divide-gray-200">
-                    {orders.length > 0 ? orders.map((order, index) => (
-                      <div key={index} className="grid grid-cols-6 gap-4 p-4 hover:bg-gray-50">
+                    {orders.length > 0 ? orders.map((order: any, index: number) => (
+                      <div key={index} className="grid grid-cols-5 gap-4 p-4 hover:bg-gray-50">
                         <div className="flex flex-col">
                           <div className="font-medium text-gray-900">{order.order}</div>
                         </div>
@@ -189,9 +196,6 @@ const CustomerDetail = () => {
                         </div>
                         <div className="flex items-center">
                           <span className="text-sm font-medium">{(order.price * order.quantity).toLocaleString()}</span>
-                        </div>
-                        <div className="flex items-center">
-                          <span className="text-sm text-gray-500">-</span>
                         </div>
                       </div>
                     )) : (
@@ -234,6 +238,48 @@ const CustomerDetail = () => {
                   </Button>
                 </div>
               </div>
+            </div>
+          </div>
+
+          {/* Right Panel - Notes Table */}
+          <div className="w-96 bg-white flex flex-col">
+            {/* Notes Header */}
+            <div className="border-b border-gray-200 p-4 flex-shrink-0">
+              <h3 className="text-lg font-semibold">Ghi chú</h3>
+            </div>
+
+            {/* Notes Table */}
+            <div className="flex-1 min-h-0">
+              <ScrollArea className="h-full">
+                <div>
+                  {/* Table Header */}
+                  <div className="grid grid-cols-2 gap-4 p-4 border-b border-gray-200 bg-gray-50 text-sm font-medium text-gray-700 sticky top-0 z-10">
+                    <div>Ngày</div>
+                    <div>Nội dung</div>
+                  </div>
+                  
+                  {/* Table Body */}
+                  <div className="divide-y divide-gray-200">
+                    {notes.map((note) => (
+                      <div key={note.id} className="grid grid-cols-2 gap-4 p-4 hover:bg-gray-50">
+                        <div className="flex items-start">
+                          <span className="text-sm text-gray-600">{note.date}</span>
+                        </div>
+                        <div className="flex items-start">
+                          <span className="text-sm">{note.content}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </ScrollArea>
+            </div>
+
+            {/* Notes Footer */}
+            <div className="border-t border-gray-200 p-4 flex-shrink-0">
+              <Button size="sm" className="w-full">
+                Thêm ghi chú
+              </Button>
             </div>
           </div>
         </div>
