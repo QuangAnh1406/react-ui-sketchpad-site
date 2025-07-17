@@ -14,30 +14,35 @@ import {
 } from '@/components/ui/select';
 import CampaignSidebar from '@/components/CampaignSidebar';
 import customersDetailData from '../../customersdetail.json';
+import customersData from '../../customers.json';
 
 const CustomerDetail = () => {
   const { customerName } = useParams();
   const [pageSize, setPageSize] = useState(50);
   
-  // Find customer data
-  const customerData = customersDetailData.find(
-    customer => customer.name === decodeURIComponent(customerName || '')
+  // Find customer basic info from customers.json
+  const customerBasicInfo = customersData.find(
+    customer => customer.khachHang === decodeURIComponent(customerName || '')
   );
 
-  // Default data if not found
-  const defaultCustomer = {
-    name: customerName ? decodeURIComponent(customerName) : '',
-    gender: 'Nam',
-    address: '123 Nguyen Trai, Quan 1, Ho Chi Minh',
-    phoneNumber: '(+84) 123 456 789',
-    district: 'Quan 1',
-    province: 'Ho Chi Minh',
-    createdTimestamp: '2024-01-01',
-    orders: []
+  // Find customer detailed info from customersdetail.json (using array index as identifier)
+  // For now, we'll use the first entry from customersdetail.json as sample data
+  const customerDetailInfo = customersDetailData[0] || {};
+
+  // Merge customer data
+  const customer = {
+    name: customerBasicInfo?.khachHang || decodeURIComponent(customerName || ''),
+    email: customerBasicInfo?.email || '',
+    phoneNumber: customerBasicInfo?.soDienThoai || '',
+    address: customerBasicInfo?.diaChi || '',
+    district: customerBasicInfo?.quan || customerDetailInfo.district || '',
+    province: customerBasicInfo?.thanhPho || customerDetailInfo.province || '',
+    gender: customerDetailInfo.gender || 'Nam',
+    createdTimestamp: customerDetailInfo.createdTimestamp || '2024-01-01',
+    orders: customerDetailInfo.orders || []
   };
 
-  const customer = customerData || defaultCustomer;
-  const orders = customer.orders || [];
+  const orders = customer.orders;
 
   // Calculate totals
   const totalAmount = orders.reduce((sum, order) => sum + (order.price || 0) * (order.quantity || 0), 0);
@@ -85,6 +90,10 @@ const CustomerDetail = () => {
                 <div>
                   <span className="text-sm text-gray-500 block">Họ và tên</span>
                   <div className="font-medium">{customer.name}</div>
+                </div>
+                <div>
+                  <span className="text-sm text-gray-500 block">Email</span>
+                  <div className="font-medium">{customer.email}</div>
                 </div>
                 <div>
                   <span className="text-sm text-gray-500 block">Giới tính</span>
@@ -155,11 +164,11 @@ const CustomerDetail = () => {
                   {/* Table Header */}
                   <div className="grid grid-cols-6 gap-4 p-4 border-b border-gray-200 bg-gray-50 text-sm font-medium text-gray-700 sticky top-0 z-10">
                     <div>Đơn hàng</div>
-                    <div>Màu</div>
+                    <div>Model</div>
                     <div>Số lượng</div>
                     <div>Giá (VND)</div>
-                    <div>Ghi chú khách hàng</div>
-                    <div>Phản hồi</div>
+                    <div>Tổng tiền</div>
+                    <div>Ghi chú</div>
                   </div>
                   
                   {/* Table Body */}
@@ -167,25 +176,22 @@ const CustomerDetail = () => {
                     {orders.length > 0 ? orders.map((order, index) => (
                       <div key={index} className="grid grid-cols-6 gap-4 p-4 hover:bg-gray-50">
                         <div className="flex flex-col">
-                          <div className="font-medium text-gray-900">{order.productName}</div>
-                          <div className="text-sm text-gray-500">{order.productCode}</div>
+                          <div className="font-medium text-gray-900">{order.order}</div>
                         </div>
                         <div className="flex items-center">
-                          <span className="text-sm">{order.color || 'N/A'}</span>
+                          <span className="text-sm">{order.model}</span>
                         </div>
                         <div className="flex items-center">
-                          <span className="text-sm">{order.quantity || 0}</span>
+                          <span className="text-sm">{order.quantity}</span>
                         </div>
                         <div className="flex items-center">
-                          <span className="text-sm">{(order.price || 0).toLocaleString()}</span>
+                          <span className="text-sm">{order.price.toLocaleString()}</span>
                         </div>
-                        <div className="flex flex-col text-sm">
-                          <div className="text-gray-900">{order.customerNote || ''}</div>
-                          <div className="text-gray-500">{order.contactDate || ''}</div>
+                        <div className="flex items-center">
+                          <span className="text-sm font-medium">{(order.price * order.quantity).toLocaleString()}</span>
                         </div>
-                        <div className="flex flex-col text-sm">
-                          <div className="text-gray-900">{order.response || ''}</div>
-                          <div className="text-gray-500">{order.responseDate || ''}</div>
+                        <div className="flex items-center">
+                          <span className="text-sm text-gray-500">-</span>
                         </div>
                       </div>
                     )) : (
