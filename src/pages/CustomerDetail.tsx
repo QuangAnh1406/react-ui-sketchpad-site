@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, SortAsc } from 'lucide-react';
@@ -15,6 +14,7 @@ import {
 import CampaignSidebar from '@/components/CampaignSidebar';
 import customersDetailData from '../../customersdetail.json';
 import customersData from '../../customers.json';
+import customerNotesData from '../../customersnote.json';
 
 const CustomerDetail = () => {
   const { customerName } = useParams();
@@ -240,43 +240,66 @@ const CustomerDetail = () => {
             </div>
           </div>
 
-          {/* Right Panel - Notes Table */}
+          {/* Right Panel - Customer Notes */}
           <div className="w-96 bg-white flex flex-col">
             {/* Notes Header */}
             <div className="border-b border-gray-200 p-4 flex-shrink-0">
-              <h3 className="text-lg font-semibold">Ghi chú</h3>
+              <h3 className="text-lg font-semibold">Ghi chú khách hàng</h3>
             </div>
 
-            {/* Notes Table */}
+            {/* Notes List with Scroll */}
             <div className="flex-1 min-h-0">
               <ScrollArea className="h-full">
-                <div>
-                  {/* Table Header */}
-                  <div className="grid grid-cols-2 gap-4 p-4 border-b border-gray-200 bg-gray-50 text-sm font-medium text-gray-700 sticky top-0 z-10">
-                    <div>Ngày</div>
-                    <div>Nội dung</div>
-                  </div>
-                  
-                  {/* Table Body */}
-                  <div className="divide-y divide-gray-200">
-                    {notes.map((note) => (
-                      <div key={note.id} className="grid grid-cols-2 gap-4 p-4 hover:bg-gray-50">
-                        <div className="flex items-start">
-                          <span className="text-sm text-gray-600">{note.date}</span>
+                <div className="p-4 space-y-4">
+                  {customerNotesData.map((note, index) => (
+                    <div key={index} className="border-b border-gray-100 pb-4 last:border-b-0">
+                      {/* Customer Name and Time */}
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="font-medium text-gray-900">{note.name}</span>
+                        <span className="text-xs text-gray-500">1 phút trước</span>
+                      </div>
+                      
+                      {/* Contact Details */}
+                      <div className="flex items-center justify-between mb-2 text-sm">
+                        <div>
+                          <span className="text-gray-500">Ngày liên lạc</span>
+                          <div className="text-gray-900">{note.contact_date}</div>
                         </div>
-                        <div className="flex items-start">
-                          <span className="text-sm">{note.content}</span>
+                        <div className="text-right">
+                          <span className="text-gray-500">Phản hồi</span>
+                          <div className={`flex items-center ${
+                            note.feedback === 'Tích cực' 
+                              ? 'text-green-600' 
+                              : 'text-red-600'
+                          }`}>
+                            <span className="mr-1">
+                              {note.feedback === 'Tích cực' ? '✓' : '✗'}
+                            </span>
+                            {note.feedback}
+                          </div>
                         </div>
                       </div>
-                    ))}
-                  </div>
+                      
+                      {/* Contact Count */}
+                      <div className="mb-3 text-sm">
+                        <span className="text-gray-500">Số lần và phương thức liên lạc</span>
+                        <div className="text-gray-900">{note.contact_count}</div>
+                      </div>
+                      
+                      {/* Note Content */}
+                      <div className="text-sm">
+                        <span className="text-gray-500">Ghi chú</span>
+                        <div className="text-gray-900 mt-1">{note.note}</div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </ScrollArea>
             </div>
 
             {/* Notes Footer */}
             <div className="border-t border-gray-200 p-4 flex-shrink-0">
-              <Button size="sm" className="w-full">
+              <Button size="sm" className="w-full bg-gray-900 hover:bg-gray-800 text-white">
                 Thêm ghi chú
               </Button>
             </div>
