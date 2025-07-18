@@ -1,13 +1,17 @@
 
 import React from 'react';
 import { LayoutGrid, Megaphone, Users, Filter } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const CampaignSidebar = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  
   const menuItems = [
     // { icon: Badge, label: 'Báo cáo', active: false },
-    { icon: Megaphone, label: 'Chiến dịch', active: true },
-    { icon: Users, label: 'Khách hàng', active: false },
-    { icon: Filter, label: 'Tiêm năng', active: false },
+    { icon: Megaphone, label: 'Chiến dịch', active: location.pathname === '/', path: '/' },
+    { icon: Users, label: 'Khách hàng', active: location.pathname === '/customers', path: '/customers' },
+    { icon: Filter, label: 'Tiêm năng', active: false, path: '#' },
   ];
 
   return (
@@ -38,6 +42,7 @@ const CampaignSidebar = () => {
           {menuItems.map((item, index) => (
             <button
               key={index}
+              onClick={() => item.path !== '#' && navigate(item.path)}
               className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-left transition-colors ${item.active
                   ? 'bg-orange-50 text-orange-600 border border-orange-200'
                   : 'text-gray-600 hover:bg-gray-50'

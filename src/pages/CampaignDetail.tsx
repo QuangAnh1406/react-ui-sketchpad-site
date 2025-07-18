@@ -148,7 +148,7 @@ const CampaignDetail = () => {
                     <div>Khách hàng</div>
                     <div>Số điện thoại</div>
                     <div>Địa chỉ</div>
-                    <div>Ngày tạo</div>
+                    <div></div>
                   </div>
                   
                   {/* Table Body */}
@@ -179,9 +179,10 @@ const CampaignDetail = () => {
                             {customer.quan} • {customer.thanhPho}
                           </div>
                         </div>
-                        <div className="flex items-center text-gray-900">
-                          {/* Using a mock date since it's not in the JSON data */}
-                          {new Date(2024, Math.floor(Math.random() * 12), Math.floor(Math.random() * 28) + 1).toLocaleDateString('vi-VN')}
+                        <div className="flex items-center justify-end">
+                          <Button variant="ghost" size="sm">
+                            <Copy className="h-4 w-4" />
+                          </Button>
                         </div>
                       </div>
                     ))}
