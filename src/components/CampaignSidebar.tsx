@@ -59,7 +59,14 @@ const CampaignSidebar = () => {
           <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">
             Quản lý chung
           </p>
-          <button className="w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-left text-gray-600 hover:bg-gray-50 transition-colors">
+          <button 
+            onClick={() => navigate('/users')}
+            className={`w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-left transition-colors ${
+              location.pathname === '/users'
+                ? 'bg-orange-50 text-orange-600 border border-orange-200'
+                : 'text-gray-600 hover:bg-gray-50'
+            }`}
+          >
             <Users className="w-5 h-5" />
             <span className="text-sm font-medium">Người dùng</span>
           </button>
