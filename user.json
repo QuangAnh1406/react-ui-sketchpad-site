@@ -1,0 +1,224 @@
+[
+  {
+    "Nhân viên": "Nicki Minaj",
+    "Vai trò": "Admin",
+    "Số điện thoại": "(+84) 678 345 124",
+    "Ngày tạo": "25/11/2022"
+  },
+  {
+    "Nhân viên": "Adele",
+    "Vai trò": "User",
+    "Số điện thoại": "(+84) 345 765 222",
+    "Ngày tạo": "19/04/2015"
+  },
+  {
+    "Nhân viên": "Rihanna",
+    "Vai trò": "User",
+    "Số điện thoại": "(+84) 123 456 789",
+    "Ngày tạo": "31/10/2020"
+  },
+  {
+    "Nhân viên": "Mariah Carey",
+    "Vai trò": "User",
+    "Số điện thoại": "(+84) 986 598 765",
+    "Ngày tạo": "15/11/2022"
+  },
+  {
+    "Nhân viên": "Pink",
+    "Vai trò": "User",
+    "Số điện thoại": "(+84) 234 567 890",
+    "Ngày tạo": "22/05/2021"
+  },
+  {
+    "Nhân viên": "Ariana Grande",
+    "Vai trò": "User",
+    "Số điện thoại": "(+84) 456 789 012",
+    "Ngày tạo": "13/08/2021"
+  },
+  {
+    "Nhân viên": "Megan Thee Stallion",
+    "Vai trò": "User",
+    "Số điện thoại": "(+84) 678 901 234",
+    "Ngày tạo": "09/08/2020"
+  },
+  {
+    "Nhân viên": "Dua Lipa",
+    "Vai trò": "User",
+    "Số điện thoại": "(+84) 890 123 456",
+    "Ngày tạo": "22/06/2019"
+  },
+  {
+    "Nhân viên": "Lady Gaga",
+    "Vai trò": "User",
+    "Số điện thoại": "(+84) 012 345 678",
+    "Ngày tạo": "14/06/2019"
+  },
+  {
+    "Nhân viên": "Beyoncé",
+    "Vai trò": "User",
+    "Số điện thoại": "(+84) 456 789 012",
+    "Ngày tạo": "30/01/2023"
+  },
+  {
+    "Nhân viên": "Taylor Swift",
+    "Vai trò": "User",
+    "Số điện thoại": "(+84) 789 012 345",
+    "Ngày tạo": "07/09/2021"
+  },
+  {
+    "Nhân viên": "Katy Perry",
+    "Vai trò": "User",
+    "Số điện thoại": "(+84) 012 345 678",
+    "Ngày tạo": "04/07/2021"
+  },
+  {
+    "Nhân viên": "Selena Gomez",
+    "Vai trò": "User",
+    "Số điện thoại": "(+84) 345 678 901",
+    "Ngày tạo": "19/02/2022"
+  },
+  {
+    "Nhân viên": "Jennifer Lopez",
+    "Vai trò": "User",
+    "Số điện thoại": "(+84) 678 901 234",
+    "Ngày tạo": "12/12/2021"
+  },
+  {
+    "Nhân viên": "Shakira",
+    "Vai trò": "User",
+    "Số điện thoại": "(+84) 901 234 567",
+    "Ngày tạo": "03/03/2018"
+  },
+  {
+    "Nhân viên": "Camila Cabello",
+    "Vai trò": "User",
+    "Số điện thoại": "(+84) 234 567 890",
+    "Ngày tạo": "27/09/2023"
+  },
+  {
+    "Nhân viên": "Billie Eilish",
+    "Vai trò": "User",
+    "Số điện thoại": "(+84) 567 890 123",
+    "Ngày tạo": "18/12/2022"
+  },
+  {
+    "Nhân viên": "Ed Sheeran",
+    "Vai trò": "User",
+    "Số điện thoại": "(+84) 111 222 333",
+    "Ngày tạo": "01/01/2020"
+  },
+  {
+    "Nhân viên": "Adele Adkins",
+    "Vai trò": "User",
+    "Số điện thoại": "(+84) 222 333 444",
+    "Ngày tạo": "05/03/2017"
+  },
+  {
+    "Nhân viên": "Justin Bieber",
+    "Vai trò": "User",
+    "Số điện thoại": "(+84) 333 444 555",
+    "Ngày tạo": "10/06/2019"
+  },
+  {
+    "Nhân viên": "Bruno Mars",
+    "Vai trò": "User",
+    "Số điện thoại": "(+84) 444 555 666",
+    "Ngày tạo": "15/09/2021"
+  },
+  {
+    "Nhân viên": "Coldplay",
+    "Vai trò": "User",
+    "Số điện thoại": "(+84) 555 666 777",
+    "Ngày tạo": "20/12/2018"
+  },
+  {
+    "Nhân viên": "Maroon 5",
+    "Vai trò": "User",
+    "Số điện thoại": "(+84) 666 777 888",
+    "Ngày tạo": "25/03/2022"
+  },
+  {
+    "Nhân viên": "The Weeknd",
+    "Vai trò": "User",
+    "Số điện thoại": "(+84) 777 888 999",
+    "Ngày tạo": "30/07/2020"
+  },
+  {
+    "Nhân viên": "Post Malone",
+    "Vai trò": "User",
+    "Số điện thoại": "(+84) 888 999 000",
+    "Ngày tạo": "05/11/2019"
+  },
+  {
+    "Nhân viên": "Shawn Mendes",
+    "Vai trò": "User",
+    "Số điện thoại": "(+84) 999 000 111",
+    "Ngày tạo": "10/02/2023"
+  },
+  {
+    "Nhân viên": "Sam Smith",
+    "Vai trò": "User",
+    "Số điện thoại": "(+84) 000 111 222",
+    "Ngày tạo": "15/05/2017"
+  },
+  {
+    "Nhân viên": "Doja Cat",
+    "Vai trò": "User",
+    "Số điện thoại": "(+84) 111 222 333",
+    "Ngày tạo": "20/08/2022"
+  },
+  {
+    "Nhân viên": "Sia",
+    "Vai trò": "User",
+    "Số điện thoại": "(+84) 222 333 444",
+    "Ngày tạo": "25/11/2018"
+  },
+  {
+    "Nhân viên": "Imagine Dragons",
+    "Vai trò": "User",
+    "Số điện thoại": "(+84) 333 444 555",
+    "Ngày tạo": "30/01/2021"
+  },
+  {
+    "Nhân viên": "Halsey",
+    "Vai trò": "User",
+    "Số điện thoại": "(+84) 444 555 666",
+    "Ngày tạo": "05/04/2020"
+  },
+  {
+    "Nhân viên": "Khalid",
+    "Vai trò": "User",
+    "Số điện thoại": "(+84) 555 666 777",
+    "Ngày tạo": "10/07/2019"
+  },
+  {
+    "Nhân viên": "Lizzo",
+    "Vai trò": "User",
+    "Số điện thoại": "(+84) 666 777 888",
+    "Ngày tạo": "15/10/2022"
+  },
+  {
+    "Nhân viên": "Lil Nas X",
+    "Vai trò": "User",
+    "Số điện thoại": "(+84) 777 888 999",
+    "Ngày tạo": "20/01/2021"
+  },
+  {
+    "Nhân viên": "Rosalía",
+    "Vai trò": "User",
+    "Số điện thoại": "(+84) 888 999 000",
+    "Ngày tạo": "25/04/2023"
+  },
+  {
+    "Nhân viên": "Troye Sivan",
+    "Vai trò": "User",
+    "Số điện thoại": "(+84) 999 000 111",
+    "Ngày tạo": "30/07/2018"
+  },
+  {
+    "Nhân viên": "Sabrina Carpenter",
+    "Vai trò": "User",
+    "Số điện thoại": "(+84) 000 111 222",
+    "Ngày tạo": "05/10/2020"
+  }
+]
