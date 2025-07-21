@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
-import { ArrowLeft, Search, Lock, Edit, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { ArrowLeft, Search, Lock, Edit, ChevronLeft, ChevronRight, Eye, EyeOff, X } from 'lucide-react';
 import CampaignSidebar from '@/components/CampaignSidebar';
 import usersData from '../../user.json';
 import campaignsData from '../../campaigns.json';
@@ -15,6 +16,9 @@ const UserDetail = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedCampaigns, setSelectedCampaigns] = useState<string[]>([]);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [isPasswordDialogOpen, setIsPasswordDialogOpen] = useState(false);
+  const [newPassword, setNewPassword] = useState('');
   const itemsPerPage = 10;
 
   // Find user data
@@ -64,8 +68,12 @@ const UserDetail = () => {
   };
 
   const handleChangePassword = () => {
-    setShowSuccessMessage(true);
-    setTimeout(() => setShowSuccessMessage(false), 3000);
+    if (newPassword.trim()) {
+      setIsPasswordDialogOpen(false);
+      setNewPassword('');
+      setShowSuccessMessage(true);
+      setTimeout(() => setShowSuccessMessage(false), 3000);
+    }
   };
 
   return (
@@ -92,14 +100,62 @@ const UserDetail = () => {
               </div>
               
               <div className="flex items-center space-x-3">
-                <Button 
-                  variant="outline" 
-                  onClick={handleChangePassword}
-                  className="border-gray-300"
-                >
-                  <Lock className="h-4 w-4 mr-2" />
-                  Đổi mật khẩu
-                </Button>
+                <Dialog open={isPasswordDialogOpen} onOpenChange={setIsPasswordDialogOpen}>
+                  <DialogTrigger asChild>
+                    <Button 
+                      variant="outline" 
+                      className="border-gray-300"
+                    >
+                      <Lock className="h-4 w-4 mr-2" />
+                      Đổi mật khẩu
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-md">
+                    <DialogHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
+                      <DialogTitle className="text-lg font-semibold">Đổi mật khẩu</DialogTitle>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setIsPasswordDialogOpen(false)}
+                        className="h-8 w-8 p-0"
+                      >
+                        <X className="h-4 w-4" />
+                      </Button>
+                    </DialogHeader>
+                    <div className="space-y-4">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Nhập mật khẩu mới <span className="text-red-500">*</span>
+                        </label>
+                        <Input
+                          type="password"
+                          value={newPassword}
+                          onChange={(e) => setNewPassword(e.target.value)}
+                          placeholder="{{matKhauMoi}}"
+                          className="w-full"
+                        />
+                      </div>
+                      <div className="flex justify-end space-x-3 pt-4">
+                        <Button
+                          variant="outline"
+                          onClick={() => {
+                            setIsPasswordDialogOpen(false);
+                            setNewPassword('');
+                          }}
+                        >
+                          Hủy
+                        </Button>
+                        <Button
+                          onClick={handleChangePassword}
+                          className="bg-orange-500 hover:bg-orange-600 text-white"
+                          disabled={!newPassword.trim()}
+                        >
+                          Đổi mật khẩu
+                        </Button>
+                      </div>
+                    </div>
+                  </DialogContent>
+                </Dialog>
                 <Button className="bg-orange-500 hover:bg-orange-600 text-white">
                   <Edit className="h-4 w-4 mr-2" />
                   Chỉnh sửa
@@ -151,7 +207,19 @@ const UserDetail = () => {
                         <label className="block text-sm font-medium text-gray-700 mb-1">
                           Mật khẩu
                         </label>
-                        <div className="text-gray-900">••••••••••</div>
+                        <div className="flex items-center space-x-2">
+                          <div className="text-gray-900">
+                            {showPassword ? 'password123' : '••••••••••'}
+                          </div>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => setShowPassword(!showPassword)}
+                            className="h-6 w-6 p-0 text-gray-400 hover:text-gray-600"
+                          >
+                            {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                          </Button>
+                        </div>
                       </div>
                     </div>
                   </div>
