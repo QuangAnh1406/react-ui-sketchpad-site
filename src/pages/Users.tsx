@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -116,9 +117,12 @@ const Users = () => {
                           </span>
                         </div>
                         <div>
-                          <div className="font-medium text-gray-900">
+                          <Link 
+                            to={`/user/${encodeURIComponent(user["Nhân viên"])}`}
+                            className="font-medium text-gray-900 hover:text-orange-600 cursor-pointer"
+                          >
                             {user["Nhân viên"]}
-                          </div>
+                          </Link>
                           <div className="text-sm text-gray-500">
                             {user["Nhân viên"].toLowerCase().replace(/\s+/g, '.') + '@xiaomi.com'}
                           </div>
