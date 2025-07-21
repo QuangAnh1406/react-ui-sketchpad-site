@@ -77,7 +77,6 @@ const CreateCampaignDialog = ({ children }: CreateCampaignDialogProps) => {
                 <h3 className="font-medium text-gray-900 mb-4">
                   Thông tin chung
                 </h3>
-                
                 <div className="space-y-4">
                   <div>
                     <Label htmlFor="campaign-name">
