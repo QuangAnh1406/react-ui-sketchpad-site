@@ -11,7 +11,7 @@ const CampaignSidebar = () => {
     // { icon: Badge, label: 'Báo cáo', active: false },
     { icon: Megaphone, label: 'Chiến dịch', active: location.pathname === '/', path: '/' },
     { icon: Users, label: 'Khách hàng', active: location.pathname === '/customers', path: '/customers' },
-    { icon: Filter, label: 'Tiêm năng', active: false, path: '#' },
+    { icon: Filter, label: 'Tiềm năng', active: location.pathname === '/prospects', path: '/prospects' },
   ];
 
   return (
