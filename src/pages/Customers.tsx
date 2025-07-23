@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Copy, Search, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Copy, Search, Edit } from 'lucide-react';
 import CampaignSidebar from '@/components/CampaignSidebar';
 import customersData from '../../customers.json';
 
@@ -10,7 +12,21 @@ const Customers = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10;
+  const [itemsPerPage, setItemsPerPage] = useState(50);
+
+  // Array of colors for avatar dots
+  const avatarColors = [
+    'bg-red-500',
+    'bg-yellow-500', 
+    'bg-blue-500',
+    'bg-black',
+    'bg-pink-500',
+    'bg-green-500',
+    'bg-orange-500',
+    'bg-cyan-500',
+    'bg-purple-500',
+    'bg-indigo-500'
+  ];
 
   // Filter customers based on search term
   const filteredCustomers = customersData.filter(customer =>
@@ -28,130 +44,203 @@ const Customers = () => {
     navigate(`/customer/${encodeURIComponent(customerName)}`);
   };
 
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
+  const handleItemsPerPageChange = (value: string) => {
+    setItemsPerPage(Number(value));
+    setCurrentPage(1);
+  };
+
+  const getRandomDate = () => {
+    const start = new Date(2018, 0, 1);
+    const end = new Date(2023, 11, 31);
+    const date = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+    return date.toLocaleDateString('vi-VN');
+  };
+
   return (
     <div className="flex min-h-screen bg-gray-50">
       <CampaignSidebar />
       
-      <div className="flex-1 p-6">
-        <div className="bg-white rounded-lg shadow-sm">
-          {/* Header */}
-          <div className="p-6 border-b border-gray-200">
-            <div className="flex items-center justify-between">
+      <div className="flex-1">
+        {/* Header */}
+        <div className="bg-white border-b border-gray-200 px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-xl font-semibold text-gray-900">Danh sách khách hàng</h1>
+              <p className="text-sm text-gray-500">Khách hàng • Danh sách khách hàng</p>
+            </div>
+            <Button variant="outline" className="flex items-center space-x-2">
+              <Edit className="w-4 h-4" />
+              <span>Chỉnh sửa</span>
+            </Button>
+          </div>
+        </div>
+
+        {/* Content */}
+        <div className="flex">
+          {/* Left Panel */}
+          <div className="w-80 bg-white border-r border-gray-200 p-6">
+            <div className="space-y-6">
               <div>
-                <h1 className="text-2xl font-semibold text-gray-900">Khách hàng</h1>
-                <p className="text-gray-600 mt-1">Quản lý danh sách khách hàng</p>
-              </div>
-              
-              {/* Search */}
-              <div className="flex items-center space-x-4">
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
-                  <Input
-                    placeholder="Tìm kiếm khách hàng..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-10 w-80"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Customer Stats */}
-          <div className="p-6 border-b border-gray-200">
-            <div className="grid grid-cols-3 gap-6">
-              <div className="bg-blue-50 p-4 rounded-lg">
-                <div className="text-2xl font-bold text-blue-600">{customersData.length}</div>
-                <div className="text-sm text-blue-600">Tổng khách hàng</div>
-              </div>
-              <div className="bg-green-50 p-4 rounded-lg">
-                <div className="text-2xl font-bold text-green-600">{Math.floor(customersData.length * 0.7)}</div>
-                <div className="text-sm text-green-600">Khách hàng hoạt động</div>
-              </div>
-              <div className="bg-orange-50 p-4 rounded-lg">
-                <div className="text-2xl font-bold text-orange-600">{Math.floor(customersData.length * 0.3)}</div>
-                <div className="text-sm text-orange-600">Khách hàng mới</div>
-              </div>
-            </div>
-          </div>
-
-          {/* Table */}
-          <div className="overflow-hidden">
-            {/* Table Header */}
-            <div className="bg-gray-50 px-6 py-3 border-b border-gray-200">
-              <div className="grid grid-cols-4 gap-4 text-sm font-medium text-gray-500">
-                <div>Khách hàng</div>
-                <div>Số điện thoại</div>
-                <div>Địa chỉ</div>
-                <div></div>
-              </div>
-            </div>
-            
-            {/* Table Body */}
-            <div className="divide-y divide-gray-200">
-              {paginatedCustomers.map((customer, index) => (
-                <div key={index} className="px-6 py-4 hover:bg-gray-50">
-                  <div className="grid grid-cols-4 gap-4 items-center">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center">
-                        <span className="text-orange-600 font-medium text-sm">
-                          {customer.khachHang.charAt(0)}
-                        </span>
-                      </div>
-                      <div>
-                        <div 
-                          className="font-medium text-gray-900 cursor-pointer hover:text-blue-600"
-                          onClick={() => handleCustomerClick(customer.khachHang)}
-                        >
-                          {customer.khachHang}
-                        </div>
-                        <div className="text-sm text-gray-500">{customer.email}</div>
-                      </div>
-                    </div>
-                    <div className="text-gray-900">{customer.soDienThoai}</div>
-                    <div>
-                      <div className="text-gray-900">{customer.diaChi}</div>
-                      <div className="text-sm text-gray-500">
-                        {customer.quan} • {customer.thanhPho}
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-end">
-                      <Button variant="ghost" size="sm">
-                        <Copy className="h-4 w-4" />
-                      </Button>
-                    </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Thông tin chung</h3>
+                <div className="space-y-3">
+                  <div>
+                    <p className="text-sm font-medium text-gray-700">Tên tệp</p>
+                    <p className="text-sm text-gray-600">Danh sách khách hàng</p>
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-gray-700">Mô tả chung</p>
+                    <p className="text-sm text-gray-600">
+                      Danh sách khách hàng với thông tin liên hệ, địa chỉ và thông tin cơ bản. 
+                      Dữ liệu được cập nhật thường xuyên để đảm bảo tính chính xác.
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-gray-700">Tổng khách hàng</p>
+                    <p className="text-sm text-gray-600">{customersData.length} khách hàng</p>
                   </div>
                 </div>
-              ))}
+              </div>
             </div>
           </div>
 
-          {/* Pagination */}
-          <div className="px-6 py-4 border-t border-gray-200">
-            <div className="flex items-center justify-between">
-              <div className="text-sm text-gray-500">
-                Hiển thị {startIndex + 1}-{Math.min(startIndex + itemsPerPage, filteredCustomers.length)} của {filteredCustomers.length} khách hàng
+          {/* Main Content */}
+          <div className="flex-1 p-6">
+            {/* Search Bar */}
+            <div className="mb-6">
+              <div className="relative max-w-md">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                <Input
+                  type="text"
+                  placeholder="Tìm kiếm khách hàng"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="pl-10"
+                />
               </div>
-              <div className="flex items-center space-x-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                  disabled={currentPage === 1}
-                >
-                  <ChevronLeft className="h-4 w-4" />
-                </Button>
-                <span className="text-sm text-gray-700">
-                  Trang {currentPage} / {totalPages}
-                </span>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-                  disabled={currentPage === totalPages}
-                >
-                  <ChevronRight className="h-4 w-4" />
-                </Button>
+            </div>
+
+            {/* Table */}
+            <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+              <div className="overflow-x-auto">
+                <div className="max-h-[600px] overflow-y-auto">
+                  <Table>
+                    <TableHeader className="sticky top-0 bg-gray-50 z-10">
+                      <TableRow>
+                        <TableHead className="w-12">
+                          <Checkbox />
+                        </TableHead>
+                        <TableHead>Khách hàng</TableHead>
+                        <TableHead>Số điện thoại</TableHead>
+                        <TableHead>Địa chỉ</TableHead>
+                        <TableHead>Ngày tạo</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {paginatedCustomers.map((customer, index) => (
+                        <TableRow key={index} className="hover:bg-gray-50">
+                          <TableCell>
+                            <Checkbox />
+                          </TableCell>
+                          <TableCell>
+                            <div className="flex items-center space-x-3">
+                              <div className={`w-8 h-8 rounded-full flex items-center justify-center ${avatarColors[(startIndex + index) % avatarColors.length]}`}>
+                                <span className="text-white text-xs font-medium">
+                                  {customer.khachHang.charAt(0)}
+                                </span>
+                              </div>
+                              <div>
+                                <p 
+                                  className="font-medium text-gray-900 cursor-pointer hover:text-blue-600"
+                                  onClick={() => handleCustomerClick(customer.khachHang)}
+                                >
+                                  {customer.khachHang}
+                                </p>
+                                <p className="text-sm text-gray-500">{customer.email}</p>
+                              </div>
+                            </div>
+                          </TableCell>
+                          <TableCell className="text-gray-600">{customer.soDienThoai}</TableCell>
+                          <TableCell>
+                            <div>
+                              <p className="text-gray-900">{customer.diaChi}</p>
+                              <p className="text-sm text-gray-500">{customer.quan} • {customer.thanhPho}</p>
+                            </div>
+                          </TableCell>
+                          <TableCell className="text-gray-600">{getRandomDate()}</TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </div>
+              </div>
+
+              {/* Pagination */}
+              <div className="flex items-center justify-between px-6 py-4 border-t border-gray-200">
+                <div className="flex items-center space-x-4">
+                  <select 
+                    value={itemsPerPage} 
+                    onChange={(e) => handleItemsPerPageChange(e.target.value)}
+                    className="border border-gray-300 rounded px-2 py-1 text-sm"
+                  >
+                    <option value={10}>10</option>
+                    <option value={25}>25</option>
+                    <option value={50}>50</option>
+                    <option value={100}>100</option>
+                  </select>
+                  <span className="text-sm text-gray-600">mục trên mỗi trang</span>
+                  <span className="text-sm text-gray-500">
+                    Hiển thị {startIndex + 1}-{Math.min(startIndex + itemsPerPage, filteredCustomers.length)} của {filteredCustomers.length} khách hàng
+                  </span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    onClick={() => handlePageChange(Math.max(currentPage - 1, 1))}
+                    disabled={currentPage === 1}
+                  >
+                    &lt;
+                  </Button>
+                  
+                  {/* Page numbers */}
+                  {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                    const pageNum = i + 1;
+                    if (totalPages <= 5) {
+                      return (
+                        <Button 
+                          key={pageNum}
+                          variant="outline" 
+                          size="sm"
+                          onClick={() => handlePageChange(pageNum)}
+                          className={currentPage === pageNum ? "bg-blue-50 text-blue-600 border-blue-200" : ""}
+                        >
+                          {pageNum}
+                        </Button>
+                      );
+                    }
+                    return null;
+                  })}
+                  
+                  {totalPages > 5 && (
+                    <>
+                      <span className="text-sm text-gray-600">...</span>
+                      <Button variant="outline" size="sm">{totalPages}</Button>
+                    </>
+                  )}
+                  
+                  <Button 
+                    variant="outline" 
+                    size="sm"
+                    onClick={() => handlePageChange(Math.min(currentPage + 1, totalPages))}
+                    disabled={currentPage === totalPages}
+                  >
+                    &gt;
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
