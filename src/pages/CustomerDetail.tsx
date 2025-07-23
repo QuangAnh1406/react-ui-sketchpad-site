@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, SortAsc } from 'lucide-react';
+import { ArrowLeft, SortAsc, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { Textarea } from '@/components/ui/textarea';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import {
   Select,
   SelectContent,
@@ -19,6 +21,14 @@ import customerNotesData from '../../customersnote.json';
 const CustomerDetail = () => {
   const { customerName } = useParams();
   const [pageSize, setPageSize] = useState(50);
+  const [showAddNoteDialog, setShowAddNoteDialog] = useState(false);
+  const [noteForm, setNoteForm] = useState({
+    contactTime: '',
+    contactMethod: '',
+    contactCount: '',
+    customerFeedback: '',
+    note: ''
+  });
   
   // Find customer basic info from customers.json
   const customerBasicInfo = customersData.find(
@@ -54,6 +64,34 @@ const CustomerDetail = () => {
     { id: 2, date: '2024-01-20', content: 'Đã liên hệ xác nhận đơn hàng' },
     { id: 3, date: '2024-01-25', content: 'Khách hàng hài lòng với sản phẩm' },
   ];
+
+  const handleAddNote = () => {
+    setShowAddNoteDialog(true);
+  };
+
+  const handleSaveNote = () => {
+    // Here you would typically save the note to your backend
+    console.log('Saving note:', noteForm);
+    setShowAddNoteDialog(false);
+    setNoteForm({
+      contactTime: '',
+      contactMethod: '',
+      contactCount: '',
+      customerFeedback: '',
+      note: ''
+    });
+  };
+
+  const handleCloseDialog = () => {
+    setShowAddNoteDialog(false);
+    setNoteForm({
+      contactTime: '',
+      contactMethod: '',
+      contactCount: '',
+      customerFeedback: '',
+      note: ''
+    });
+  };
 
   return (
     <div className="flex h-screen bg-gray-50">
@@ -299,12 +337,126 @@ const CustomerDetail = () => {
 
             {/* Notes Footer */}
             <div className="border-t border-gray-200 p-4 flex-shrink-0">
-              <Button size="sm" className="w-full bg-gray-900 hover:bg-gray-800 text-white">
+              <Button 
+                size="sm" 
+                className="w-full bg-gray-900 hover:bg-gray-800 text-white"
+                onClick={handleAddNote}
+              >
                 Thêm ghi chú
               </Button>
             </div>
           </div>
         </div>
+
+        {/* Add Note Dialog */}
+        <Dialog open={showAddNoteDialog} onOpenChange={setShowAddNoteDialog}>
+          <DialogContent className="max-w-md">
+            <DialogHeader className="flex flex-row items-center justify-between p-0">
+              <DialogTitle className="text-lg font-semibold">Thêm ghi chú</DialogTitle>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={handleCloseDialog}
+                className="p-2"
+              >
+                <X className="h-4 w-4" />
+              </Button>
+            </DialogHeader>
+            
+            <div className="space-y-4 mt-4">
+              {/* Contact Time */}
+              <div>
+                <label className="text-sm font-medium text-gray-700 mb-1 block">
+                  Thời gian liên hệ *
+                </label>
+                <Input
+                  placeholder="Thời gian liên hệ"
+                  value={noteForm.contactTime}
+                  onChange={(e) => setNoteForm({...noteForm, contactTime: e.target.value})}
+                />
+              </div>
+
+              {/* Contact Method */}
+              <div>
+                <label className="text-sm font-medium text-gray-700 mb-1 block">
+                  Phương thức liên hệ *
+                </label>
+                <Select 
+                  value={noteForm.contactMethod} 
+                  onValueChange={(value) => setNoteForm({...noteForm, contactMethod: value})}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Chọn phương thức..." />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="phone">Điện thoại</SelectItem>
+                    <SelectItem value="email">Email</SelectItem>
+                    <SelectItem value="sms">SMS</SelectItem>
+                    <SelectItem value="meeting">Gặp mặt trực tiếp</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Contact Count */}
+              <div>
+                <label className="text-sm font-medium text-gray-700 mb-1 block">
+                  Số lần liên hệ *
+                </label>
+                <Input
+                  placeholder="Điền số lần liên hệ"
+                  value={noteForm.contactCount}
+                  onChange={(e) => setNoteForm({...noteForm, contactCount: e.target.value})}
+                />
+              </div>
+
+              {/* Customer Feedback */}
+              <div>
+                <label className="text-sm font-medium text-gray-700 mb-1 block">
+                  Phản hồi khách hàng *
+                </label>
+                <Select 
+                  value={noteForm.customerFeedback} 
+                  onValueChange={(value) => setNoteForm({...noteForm, customerFeedback: value})}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Chọn phản hồi..." />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="positive">Tích cực</SelectItem>
+                    <SelectItem value="negative">Tiêu cực</SelectItem>
+                    <SelectItem value="neutral">Trung tính</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Note */}
+              <div>
+                <label className="text-sm font-medium text-gray-700 mb-1 block">
+                  Thêm ghi chú
+                </label>
+                <Textarea
+                  placeholder="Thêm ghi chú..."
+                  value={noteForm.note}
+                  onChange={(e) => setNoteForm({...noteForm, note: e.target.value})}
+                  rows={4}
+                />
+              </div>
+            </div>
+
+            {/* Dialog Footer */}
+            <div className="flex justify-end space-x-2 mt-6">
+              <Button variant="outline" onClick={handleCloseDialog}>
+                Quay lại
+              </Button>
+              <Button 
+                className="bg-gray-900 hover:bg-gray-800 text-white"
+                onClick={handleSaveNote}
+              >
+                Thêm ghi chú
+              </Button>
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   );
