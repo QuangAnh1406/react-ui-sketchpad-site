@@ -118,9 +118,12 @@ const CampaignDetail = () => {
             <button className="py-3 px-1 text-gray-500 hover:text-gray-700">
               Báo cáo
             </button>
-            <button className="py-3 px-1 text-gray-500 hover:text-gray-700">
+            <Link 
+              to={`/campaign/${encodeURIComponent(campaignName || '')}/settings`}
+              className="py-3 px-1 text-gray-500 hover:text-gray-700"
+            >
               Cài đặt
-            </button>
+            </Link>
           </div>
         </div>
 

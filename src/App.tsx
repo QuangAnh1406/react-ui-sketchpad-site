@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
+import CampaignSettings from "./pages/CampaignSettings";
 import CampaignDetail from "./pages/CampaignDetail";
 import CustomerDetail from "./pages/CustomerDetail";
 import Customers from "./pages/Customers";
@@ -24,6 +25,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/campaign/:campaignName" element={<CampaignDetail />} />
+          <Route path="/campaign/:campaignName/settings" element={<CampaignSettings />} />
           <Route path="/customers" element={<Customers />} />
           <Route path="/customer/:customerName" element={<CustomerDetail />} />
           <Route path="/users" element={<Users />} />
