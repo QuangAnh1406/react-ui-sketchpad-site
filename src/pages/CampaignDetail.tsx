@@ -6,6 +6,7 @@ import CampaignSidebar from '@/components/CampaignSidebar';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { Textarea } from '@/components/ui/textarea';
 import {
   Select,
   SelectContent,
@@ -13,12 +14,25 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from '@/components/ui/dialog';
 import customersData from '../../customers.json';
 
 const CampaignDetail = () => {
   const { campaignName } = useParams();
   const [pageSize, setPageSize] = useState(50);
   const [currentPage, setCurrentPage] = useState(1);
+  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
+  const [editFormData, setEditFormData] = useState({
+    name: campaignName ? decodeURIComponent(campaignName) : '',
+    type: 'email',
+    description: ''
+  });
 
   // Calculate pagination
   const totalItems = customersData.length;
@@ -55,6 +69,18 @@ const CampaignDetail = () => {
     return pages;
   };
 
+  const handleEditFormChange = (field: string, value: string) => {
+    setEditFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
+  const handleSaveChanges = () => {
+    // Handle save logic here
+    setIsEditDialogOpen(false);
+  };
+
   return (
     <div className="flex h-screen bg-gray-50">
       <CampaignSidebar />
@@ -76,7 +102,7 @@ const CampaignDetail = () => {
               <Share className="h-4 w-4 mr-2" />
               Chia sẻ
             </Button>
-            <Button variant="outline" size="sm">
+            <Button variant="outline" size="sm" onClick={() => setIsEditDialogOpen(true)}>
               <Settings className="h-4 w-4" />
               Chỉnh sửa
             </Button>
@@ -250,6 +276,79 @@ const CampaignDetail = () => {
           </div>
         </div>
       </div>
+
+      {/* Edit Campaign Dialog */}
+      <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
+        <DialogContent className="sm:max-w-[500px]">
+          <DialogHeader>
+            <DialogTitle>Chỉnh sửa chiến dịch</DialogTitle>
+          </DialogHeader>
+          
+          <div className="space-y-6">
+            <div>
+              <h3 className="text-sm font-medium mb-4">Thông tin chung</h3>
+              <div className="space-y-4">
+                <div>
+                  <label className="text-sm font-medium text-gray-700">
+                    Tên chiến dịch <span className="text-red-500">*</span>
+                  </label>
+                  <Input
+                    value={editFormData.name}
+                    onChange={(e) => handleEditFormChange('name', e.target.value)}
+                    className="mt-1"
+                    placeholder="{{tenChienDich}}"
+                  />
+                </div>
+                
+                <div>
+                  <label className="text-sm font-medium text-gray-700">
+                    Loại chiến dịch <span className="text-red-500">*</span>
+                  </label>
+                  <Select value={editFormData.type} onValueChange={(value) => handleEditFormChange('type', value)}>
+                    <SelectTrigger className="mt-1">
+                      <SelectValue placeholder="{{loaiChienDich}}" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="email">Chiến dịch Email</SelectItem>
+                      <SelectItem value="sms">Chiến dịch SMS</SelectItem>
+                      <SelectItem value="social">Chiến dịch Social Media</SelectItem>
+                      <SelectItem value="print">Chiến dịch In ấn</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                
+                <div>
+                  <label className="text-sm font-medium text-gray-700">
+                    Mô tả chiến dịch <span className="text-red-500">*</span>
+                  </label>
+                  <div className="mt-1 relative">
+                    <Textarea
+                      value={editFormData.description}
+                      onChange={(e) => handleEditFormChange('description', e.target.value)}
+                      placeholder="{{mofaChienDich}}"
+                      className="resize-none"
+                      rows={4}
+                      maxLength={100}
+                    />
+                    <div className="absolute bottom-2 right-2 text-xs text-gray-500">
+                      {editFormData.description.length}/100
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setIsEditDialogOpen(false)}>
+              Hủy
+            </Button>
+            <Button onClick={handleSaveChanges} className="bg-gray-900 hover:bg-gray-800">
+              Lưu thay đổi
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
