@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Upload } from 'lucide-react';
+import { ArrowLeft, Upload, Plus, Trash2, Calendar } from 'lucide-react';
 import CampaignSidebar from '@/components/CampaignSidebar';
 import { Button } from '@/components/ui/button';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
 import {
   Select,
   SelectContent,
@@ -15,8 +16,29 @@ import {
 
 const CampaignSettings = () => {
   const { campaignName } = useParams();
-  const [selectedOption, setSelectedOption] = useState('existing');
+  const [selectedOption, setSelectedOption] = useState('custom');
   const [selectedSegment, setSelectedSegment] = useState('existingSegment');
+  const [filters, setFilters] = useState([
+    { field: 'area', operator: 'is', value: 'Hà Nội' },
+    { field: 'phone', operator: 'contains', value: '' },
+    { field: 'gender', operator: 'is', value: 'Nữ' },
+    { field: 'date', operator: 'from', value: '13/06/2024' },
+    { field: 'property', operator: 'is', value: '' }
+  ]);
+
+  const addFilter = () => {
+    setFilters([...filters, { field: 'area', operator: 'is', value: '' }]);
+  };
+
+  const removeFilter = (index: number) => {
+    setFilters(filters.filter((_, i) => i !== index));
+  };
+
+  const updateFilter = (index: number, field: string, value: string) => {
+    const newFilters = [...filters];
+    newFilters[index] = { ...newFilters[index], [field]: value };
+    setFilters(newFilters);
+  };
 
   return (
     <div className="flex h-screen bg-gray-50">
@@ -98,7 +120,7 @@ const CampaignSettings = () => {
               </div>
               
               <RadioGroup value={selectedOption} onValueChange={setSelectedOption} className="space-y-4">
-                <div className="flex items-start space-x-3 p-4 border-2 border-orange-200 rounded-lg bg-orange-50">
+                <div className={`flex items-start space-x-3 p-4 border-2 rounded-lg ${selectedOption === 'existing' ? 'border-orange-200 bg-orange-50' : 'border-gray-200'}`}>
                   <RadioGroupItem value="existing" id="existing" className="mt-1" />
                   <div className="flex-1">
                     <Label htmlFor="existing" className="font-medium text-gray-900 cursor-pointer">
@@ -113,7 +135,7 @@ const CampaignSettings = () => {
                   </div>
                 </div>
                 
-                <div className="flex items-start space-x-3 p-4 border-2 border-gray-200 rounded-lg">
+                <div className={`flex items-start space-x-3 p-4 border-2 rounded-lg ${selectedOption === 'custom' ? 'border-orange-200 bg-orange-50' : 'border-gray-200'}`}>
                   <RadioGroupItem value="custom" id="custom" className="mt-1" />
                   <div className="flex-1">
                     <Label htmlFor="custom" className="font-medium text-gray-900 cursor-pointer">
@@ -130,32 +152,151 @@ const CampaignSettings = () => {
               </RadioGroup>
             </div>
 
-            {/* Segment Selection */}
-            <div className="mb-8">
-              <div className="mb-2">
-                <span className="text-sm font-medium text-gray-700">
-                  Chọn phân khúc <span className="text-red-500">*</span>
-                </span>
+            {/* Segment Selection or Custom Conditions */}
+            {selectedOption === 'existing' ? (
+              <div className="mb-8">
+                <div className="mb-2">
+                  <span className="text-sm font-medium text-gray-700">
+                    Chọn phân khúc <span className="text-red-500">*</span>
+                  </span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Select value={selectedSegment} onValueChange={setSelectedSegment}>
+                    <SelectTrigger className="w-64">
+                      <SelectValue placeholder="{existingSegment}" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="existingSegment">{'{existingSegment}'}</SelectItem>
+                      <SelectItem value="segment1">Phân khúc 1</SelectItem>
+                      <SelectItem value="segment2">Phân khúc 2</SelectItem>
+                      <SelectItem value="segment3">Phân khúc 3</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <span className="text-sm text-gray-500">hoặc</span>
+                  <Button variant="outline" size="sm">
+                    <Upload className="h-4 w-4 mr-2" />
+                    Tải lên
+                  </Button>
+                </div>
               </div>
-              <div className="flex items-center space-x-2">
-                <Select value={selectedSegment} onValueChange={setSelectedSegment}>
-                  <SelectTrigger className="w-64">
-                    <SelectValue placeholder="{existingSegment}" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="existingSegment">{'{existingSegment}'}</SelectItem>
-                    <SelectItem value="segment1">Phân khúc 1</SelectItem>
-                    <SelectItem value="segment2">Phân khúc 2</SelectItem>
-                    <SelectItem value="segment3">Phân khúc 3</SelectItem>
-                  </SelectContent>
-                </Select>
-                <span className="text-sm text-gray-500">hoặc</span>
-                <Button variant="outline" size="sm">
-                  <Upload className="h-4 w-4 mr-2" />
-                  Tải lên
+            ) : (
+              <div className="mb-8">
+                <div className="mb-4">
+                  <span className="text-sm text-gray-700">
+                    Khớp <strong>tất cả</strong> các mục sau đây:
+                  </span>
+                </div>
+                
+                <div className="space-y-3">
+                  {filters.map((filter, index) => (
+                    <div key={index} className="grid grid-cols-12 gap-3 items-center">
+                      <div className="col-span-3">
+                        <Select
+                          value={filter.field}
+                          onValueChange={(value) => updateFilter(index, 'field', value)}
+                        >
+                          <SelectTrigger>
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="area">Khu vực</SelectItem>
+                            <SelectItem value="phone">Số điện thoại</SelectItem>
+                            <SelectItem value="gender">Giới tính</SelectItem>
+                            <SelectItem value="date">Ngày</SelectItem>
+                            <SelectItem value="property">Thuộc tính</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      
+                      <div className="col-span-3">
+                        <Select
+                          value={filter.operator}
+                          onValueChange={(value) => updateFilter(index, 'operator', value)}
+                        >
+                          <SelectTrigger>
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="is">là</SelectItem>
+                            <SelectItem value="contains">có bắt kỳ giá trị nào</SelectItem>
+                            <SelectItem value="from">từ ngày</SelectItem>
+                            <SelectItem value="to">đến ngày</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      
+                      <div className="col-span-5">
+                        {filter.field === 'date' ? (
+                          <div className="relative">
+                            <Input
+                              type="text"
+                              value={filter.value}
+                              onChange={(e) => updateFilter(index, 'value', e.target.value)}
+                              placeholder="dd/mm/yyyy"
+                            />
+                            <Calendar className="absolute right-3 top-3 h-4 w-4 text-gray-400" />
+                          </div>
+                        ) : filter.field === 'gender' ? (
+                          <Select
+                            value={filter.value}
+                            onValueChange={(value) => updateFilter(index, 'value', value)}
+                          >
+                            <SelectTrigger>
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="Nam">Nam</SelectItem>
+                              <SelectItem value="Nữ">Nữ</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        ) : filter.field === 'area' ? (
+                          <Select
+                            value={filter.value}
+                            onValueChange={(value) => updateFilter(index, 'value', value)}
+                          >
+                            <SelectTrigger>
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="Hà Nội">Hà Nội</SelectItem>
+                              <SelectItem value="TP.HCM">TP.HCM</SelectItem>
+                              <SelectItem value="Đà Nẵng">Đà Nẵng</SelectItem>
+                              <SelectItem value="Cần Thơ">Cần Thơ</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        ) : (
+                          <Input
+                            value={filter.value}
+                            onChange={(e) => updateFilter(index, 'value', e.target.value)}
+                            placeholder="Nhập giá trị"
+                          />
+                        )}
+                      </div>
+                      
+                      <div className="col-span-1 flex justify-center">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => removeFilter(index)}
+                          className="text-red-500 hover:text-red-700"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                
+                <Button
+                  variant="ghost"
+                  onClick={addFilter}
+                  className="mt-4 text-blue-600 hover:text-blue-700"
+                >
+                  <Plus className="h-4 w-4 mr-2" />
+                  Thêm điều kiện
                 </Button>
               </div>
-            </div>
+            )}
 
             {/* Statistics */}
             <div className="grid grid-cols-2 gap-8 mb-8">
