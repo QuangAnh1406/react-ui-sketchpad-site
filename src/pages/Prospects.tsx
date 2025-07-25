@@ -6,6 +6,14 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Checkbox } from '@/components/ui/checkbox';
+import { Textarea } from '@/components/ui/textarea';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from '@/components/ui/dialog';
 import CampaignSidebar from '@/components/CampaignSidebar';
 
 interface Customer {
@@ -24,6 +32,11 @@ const Prospects = () => {
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(50);
+  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
+  const [editFormData, setEditFormData] = useState({
+    fileName: 'Danh sách tiềm năng',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut rutrum sed ipsum sem pellentesque dignissim quam ullamcorper ac. Donec elementum cursur nec dapibus. Etiam rhoncus tellus est quam gravida.'
+  });
 
   // Array of colors for avatar dots
   const avatarColors = [
@@ -84,6 +97,22 @@ const Prospects = () => {
     setCurrentPage(1);
   };
 
+  const handleEditFormChange = (field: string, value: string) => {
+    setEditFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
+  const handleSaveChanges = () => {
+    // Handle save logic here
+    setIsEditDialogOpen(false);
+  };
+
+  const handleEditClick = () => {
+    setIsEditDialogOpen(true);
+  };
+
   if (loading) {
     return (
       <div className="flex min-h-screen bg-gray-50">
@@ -109,7 +138,11 @@ const Prospects = () => {
               <h1 className="text-xl font-semibold text-gray-900">Danh sách tiềm năng</h1>
               <p className="text-sm text-gray-500">Tiềm năng • Danh sách khách hàng</p>
             </div>
-            <Button variant="outline" className="flex items-center space-x-2">
+            <Button 
+              variant="outline" 
+              className="flex items-center space-x-2"
+              onClick={handleEditClick}
+            >
               <Edit className="w-4 h-4" />
               <span>Chỉnh sửa</span>
             </Button>
@@ -126,14 +159,12 @@ const Prospects = () => {
                 <div className="space-y-3">
                   <div>
                     <p className="text-sm font-medium text-gray-700">Tên tệp</p>
-                    <p className="text-sm text-gray-600">Danh sách tiềm năng</p>
+                    <p className="text-sm text-gray-600">{editFormData.fileName}</p>
                   </div>
                   <div>
                     <p className="text-sm font-medium text-gray-700">Mô tả chung</p>
                     <p className="text-sm text-gray-600">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut rutrum sed ipsum sem
-                      pellentesque dignissim quam ullamcorper ac. Donec elementum cursur nec dapibus.
-                      Etiam rhoncus tellus est quam gravida.
+                      {editFormData.description}
                     </p>
                   </div>
                 </div>
@@ -275,6 +306,57 @@ const Prospects = () => {
           </div>
         </div>
       </div>
+
+      {/* Edit Prospects File Dialog */}
+      <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
+        <DialogContent className="sm:max-w-[500px]">
+          <DialogHeader>
+            <DialogTitle>Chỉnh sửa tệp tiềm năng mới</DialogTitle>
+          </DialogHeader>
+          
+          <div className="space-y-4">
+            <div>
+              <label className="text-sm font-medium text-gray-700">
+                Tên tệp <span className="text-red-500">*</span>
+              </label>
+              <Input
+                value={editFormData.fileName}
+                onChange={(e) => handleEditFormChange('fileName', e.target.value)}
+                className="mt-1"
+                placeholder="{{tenTep}}"
+              />
+            </div>
+            
+            <div>
+              <label className="text-sm font-medium text-gray-700">
+                Mô tả tệp <span className="text-red-500">*</span>
+              </label>
+              <div className="mt-1 relative">
+                <Textarea
+                  value={editFormData.description}
+                  onChange={(e) => handleEditFormChange('description', e.target.value)}
+                  placeholder="{{moTaTep}}"
+                  className="resize-none"
+                  rows={4}
+                  maxLength={100}
+                />
+                <div className="absolute bottom-2 right-2 text-xs text-gray-500">
+                  {editFormData.description.length}/100
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setIsEditDialogOpen(false)}>
+              Quay lại
+            </Button>
+            <Button onClick={handleSaveChanges} className="bg-gray-900 hover:bg-gray-800">
+              Lưu chỉnh sửa
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
