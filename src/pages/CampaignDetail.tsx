@@ -27,6 +27,7 @@ const CampaignDetail = () => {
   const { campaignName } = useParams();
   const [pageSize, setPageSize] = useState(50);
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchTerm, setSearchTerm] = useState('');
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [editFormData, setEditFormData] = useState({
     name: campaignName ? decodeURIComponent(campaignName) : '',
@@ -34,18 +35,37 @@ const CampaignDetail = () => {
     description: ''
   });
 
+  // Filter customers based on search term
+  const filteredCustomers = useMemo(() => {
+    if (!searchTerm.trim()) return customersData;
+    
+    return customersData.filter(customer => 
+      customer.khachHang.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      customer.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      customer.soDienThoai.includes(searchTerm) ||
+      customer.diaChi.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      customer.quan.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      customer.thanhPho.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }, [searchTerm]);
+
   // Calculate pagination
-  const totalItems = customersData.length;
+  const totalItems = filteredCustomers.length;
   const totalPages = Math.ceil(totalItems / pageSize);
   const startIndex = (currentPage - 1) * pageSize;
   const endIndex = startIndex + pageSize;
   const currentPageCustomers = useMemo(() => {
-    return customersData.slice(startIndex, endIndex);
-  }, [startIndex, endIndex]);
+    return filteredCustomers.slice(startIndex, endIndex);
+  }, [filteredCustomers, startIndex, endIndex]);
 
   const handlePageSizeChange = (newPageSize: string) => {
     setPageSize(parseInt(newPageSize));
     setCurrentPage(1); // Reset to first page when changing page size
+  };
+
+  const handleSearchChange = (value: string) => {
+    setSearchTerm(value);
+    setCurrentPage(1); // Reset to first page when searching
   };
 
   const generatePageNumbers = () => {
@@ -164,6 +184,8 @@ const CampaignDetail = () => {
                 <Input 
                   placeholder="Tìm kiếm khách hàng" 
                   className="pl-10"
+                  value={searchTerm}
+                  onChange={(e) => handleSearchChange(e.target.value)}
                 />
               </div>
             </div>
