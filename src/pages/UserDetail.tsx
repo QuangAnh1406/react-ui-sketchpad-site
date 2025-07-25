@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from "@/components/ui/dialog";
 import { ArrowLeft, Search, Lock, Edit, ChevronLeft, ChevronRight, Eye, EyeOff, X } from 'lucide-react';
 import CampaignSidebar from '@/components/CampaignSidebar';
 import usersData from '../../user.json';
@@ -19,6 +19,12 @@ const UserDetail = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isPasswordDialogOpen, setIsPasswordDialogOpen] = useState(false);
   const [newPassword, setNewPassword] = useState('');
+  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
+  const [editFormData, setEditFormData] = useState({
+    name: '',
+    email: '',
+    phoneNumber: ''
+  });
   const itemsPerPage = 10;
 
   // Find user data
@@ -74,6 +80,28 @@ const UserDetail = () => {
       setShowSuccessMessage(true);
       setTimeout(() => setShowSuccessMessage(false), 3000);
     }
+  };
+
+  const handleEditFormChange = (field: string, value: string) => {
+    setEditFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
+  const handleSaveChanges = () => {
+    // Handle save logic here
+    setIsEditDialogOpen(false);
+  };
+
+  const handleEditClick = () => {
+    // Pre-fill form with current user data
+    setEditFormData({
+      name: user["Nhân viên"],
+      email: user["Nhân viên"].toLowerCase().replace(/\s+/g, '.') + '@xiaomi.com',
+      phoneNumber: user["Số điện thoại"]
+    });
+    setIsEditDialogOpen(true);
   };
 
   return (
@@ -156,7 +184,10 @@ const UserDetail = () => {
                     </div>
                   </DialogContent>
                 </Dialog>
-                <Button className="bg-orange-500 hover:bg-orange-600 text-white">
+                <Button 
+                  className="bg-orange-500 hover:bg-orange-600 text-white"
+                  onClick={handleEditClick}
+                >
                   <Edit className="h-4 w-4 mr-2" />
                   Chỉnh sửa
                 </Button>
@@ -351,6 +382,63 @@ const UserDetail = () => {
               <span>Đổi mật khẩu thành công</span>
             </div>
           )}
+
+          {/* Edit Employee Dialog */}
+          <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
+            <DialogContent className="sm:max-w-[500px]">
+              <DialogHeader>
+                <DialogTitle>Chỉnh sửa nhân viên</DialogTitle>
+              </DialogHeader>
+              
+              <div className="space-y-4">
+                <div>
+                  <label className="text-sm font-medium text-gray-700">
+                    Tên nhân viên <span className="text-red-500">*</span>
+                  </label>
+                  <Input
+                    value={editFormData.name}
+                    onChange={(e) => handleEditFormChange('name', e.target.value)}
+                    className="mt-1"
+                    placeholder="{{tenNhanVien}}"
+                  />
+                </div>
+                
+                <div>
+                  <label className="text-sm font-medium text-gray-700">
+                    Email <span className="text-red-500">*</span>
+                  </label>
+                  <Input
+                    type="email"
+                    value={editFormData.email}
+                    onChange={(e) => handleEditFormChange('email', e.target.value)}
+                    className="mt-1"
+                    placeholder="{{email}}"
+                  />
+                </div>
+                
+                <div>
+                  <label className="text-sm font-medium text-gray-700">
+                    Số điện thoại <span className="text-red-500">*</span>
+                  </label>
+                  <Input
+                    value={editFormData.phoneNumber}
+                    onChange={(e) => handleEditFormChange('phoneNumber', e.target.value)}
+                    className="mt-1"
+                    placeholder="{{phoneNumber}}"
+                  />
+                </div>
+              </div>
+              
+              <DialogFooter>
+                <Button variant="outline" onClick={() => setIsEditDialogOpen(false)}>
+                  Hủy
+                </Button>
+                <Button onClick={handleSaveChanges} className="bg-gray-900 hover:bg-gray-800">
+                  Lưu thay đổi
+                </Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
         </div>
       </div>
     </div>
