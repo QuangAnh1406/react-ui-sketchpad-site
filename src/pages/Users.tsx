@@ -6,6 +6,13 @@ import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Search, Plus, Edit } from 'lucide-react';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from '@/components/ui/dialog';
 import CampaignSidebar from '@/components/CampaignSidebar';
 import usersData from '../../user.json';
 
@@ -14,6 +21,12 @@ const Users = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
   const [itemsPerPage, setItemsPerPage] = useState(50);
+  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
+  const [editFormData, setEditFormData] = useState({
+    name: '',
+    email: '',
+    phoneNumber: ''
+  });
 
   // Array of colors for avatar dots
   const avatarColors = [
@@ -73,6 +86,27 @@ const Users = () => {
     return date.toLocaleDateString('vi-VN');
   };
 
+  const handleEditFormChange = (field: string, value: string) => {
+    setEditFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
+  const handleSaveChanges = () => {
+    // Handle save logic here
+    setIsEditDialogOpen(false);
+  };
+
+  const handleEditClick = () => {
+    setEditFormData({
+      name: '',
+      email: '',
+      phoneNumber: ''
+    });
+    setIsEditDialogOpen(true);
+  };
+
   return (
     <div className="flex min-h-screen bg-gray-50">
       <CampaignSidebar />
@@ -85,7 +119,11 @@ const Users = () => {
               <h1 className="text-xl font-semibold text-gray-900">Danh sách người dùng</h1>
               <p className="text-sm text-gray-500">Người dùng • Danh sách nhân viên</p>
             </div>
-            <Button variant="outline" className="flex items-center space-x-2">
+            <Button 
+              variant="outline" 
+              className="flex items-center space-x-2"
+              onClick={handleEditClick}
+            >
               <Edit className="w-4 h-4" />
               <span>Chỉnh sửa</span>
             </Button>
@@ -282,6 +320,63 @@ const Users = () => {
           <span>Đã chọn {selectedUsers.length} nhân viên</span>
         </div>
       )}
+
+      {/* Edit Employee Dialog */}
+      <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
+        <DialogContent className="sm:max-w-[500px]">
+          <DialogHeader>
+            <DialogTitle>Chỉnh sửa nhân viên</DialogTitle>
+          </DialogHeader>
+          
+          <div className="space-y-4">
+            <div>
+              <label className="text-sm font-medium text-gray-700">
+                Tên nhân viên <span className="text-red-500">*</span>
+              </label>
+              <Input
+                value={editFormData.name}
+                onChange={(e) => handleEditFormChange('name', e.target.value)}
+                className="mt-1"
+                placeholder="{{tenNhanVien}}"
+              />
+            </div>
+            
+            <div>
+              <label className="text-sm font-medium text-gray-700">
+                Email <span className="text-red-500">*</span>
+              </label>
+              <Input
+                type="email"
+                value={editFormData.email}
+                onChange={(e) => handleEditFormChange('email', e.target.value)}
+                className="mt-1"
+                placeholder="{{email}}"
+              />
+            </div>
+            
+            <div>
+              <label className="text-sm font-medium text-gray-700">
+                Số điện thoại <span className="text-red-500">*</span>
+              </label>
+              <Input
+                value={editFormData.phoneNumber}
+                onChange={(e) => handleEditFormChange('phoneNumber', e.target.value)}
+                className="mt-1"
+                placeholder="{{phoneNumber}}"
+              />
+            </div>
+          </div>
+          
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setIsEditDialogOpen(false)}>
+              Hủy
+            </Button>
+            <Button onClick={handleSaveChanges} className="bg-gray-900 hover:bg-gray-800">
+              Lưu thay đổi
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
