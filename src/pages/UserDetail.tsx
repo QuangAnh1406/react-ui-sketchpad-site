@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { ArrowLeft, Search, Lock, Edit, ChevronLeft, ChevronRight, Eye, EyeOff, X } from 'lucide-react';
 import CampaignSidebar from '@/components/CampaignSidebar';
 import usersData from '../../user.json';
@@ -283,7 +284,7 @@ const UserDetail = () => {
                 </div>
 
                 {/* Campaigns Table */}
-                <div className="border border-gray-200 rounded-lg overflow-hidden overflow-x-auto">
+                <div className="border border-gray-200 rounded-lg overflow-hidden">
                   {/* Table Header */}
                   <div className="bg-gray-50 px-4 py-3 border-b border-gray-200">
                     <div className="grid grid-cols-5 gap-4 items-center text-sm font-medium text-gray-500">
@@ -301,50 +302,52 @@ const UserDetail = () => {
                     </div>
                   </div>
                   
-                  {/* Table Body */}
-                  <div className="divide-y divide-gray-200">
-                    {paginatedCampaigns.map((campaign, index) => {
-                      const campaignId = `${startIndex + index}`;
-                      const isSelected = selectedCampaigns.includes(campaignId);
-                      
-                      return (
-                        <div key={index} className="px-4 py-4 hover:bg-gray-50">
-                          <div className="grid grid-cols-5 gap-4 items-center">
-                            <div className="flex items-center space-x-3">
-                              <Checkbox 
-                                checked={isSelected}
-                                onCheckedChange={() => handleSelectCampaign(campaignId)}
-                              />
+                  {/* Table Body with ScrollArea */}
+                  <ScrollArea className="h-[400px]">
+                    <div className="divide-y divide-gray-200">
+                      {paginatedCampaigns.map((campaign, index) => {
+                        const campaignId = `${startIndex + index}`;
+                        const isSelected = selectedCampaigns.includes(campaignId);
+                        
+                        return (
+                          <div key={index} className="px-4 py-4 hover:bg-gray-50">
+                            <div className="grid grid-cols-5 gap-4 items-center">
                               <div className="flex items-center space-x-3">
-                                <div className={`w-3 h-3 rounded ${getCampaignColor(index)}`}></div>
-                                <div className="font-medium text-gray-900 text-sm">
-                                  {campaign.name}
+                                <Checkbox 
+                                  checked={isSelected}
+                                  onCheckedChange={() => handleSelectCampaign(campaignId)}
+                                />
+                                <div className="flex items-center space-x-3">
+                                  <div className={`w-3 h-3 rounded ${getCampaignColor(index)}`}></div>
+                                  <div className="font-medium text-gray-900 text-sm">
+                                    {campaign.name}
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                            <div className="text-sm">
-                              <div className="font-medium text-gray-900">{campaign.manager.name}</div>
-                              <div className="text-gray-500">{campaign.manager.email}</div>
-                            </div>
-                            <div className="text-gray-900 text-sm">
-                              {campaign.total_customers.toLocaleString()}
-                            </div>
-                            <div className="text-sm">
-                              <div className="font-medium text-gray-900">
-                                {formatCurrency(campaign.revenue.amount)}
+                              <div className="text-sm">
+                                <div className="font-medium text-gray-900">{campaign.manager.name}</div>
+                                <div className="text-gray-500">{campaign.manager.email}</div>
                               </div>
-                              <div className={`text-xs ${
-                                campaign.revenue.change.startsWith('+') ? 'text-green-600' : 'text-red-600'
-                              }`}>
-                                {campaign.revenue.change} {campaign.revenue.compared_to}
+                              <div className="text-gray-900 text-sm">
+                                {campaign.total_customers.toLocaleString()}
                               </div>
+                              <div className="text-sm">
+                                <div className="font-medium text-gray-900">
+                                  {formatCurrency(campaign.revenue.amount)}
+                                </div>
+                                <div className={`text-xs ${
+                                  campaign.revenue.change.startsWith('+') ? 'text-green-600' : 'text-red-600'
+                                }`}>
+                                  {campaign.revenue.change} {campaign.revenue.compared_to}
+                                </div>
+                              </div>
+                              <div></div>
                             </div>
-                            <div></div>
                           </div>
-                        </div>
-                      );
-                    })}
-                  </div>
+                        );
+                      })}
+                    </div>
+                  </ScrollArea>
                 </div>
 
                 {/* Pagination */}
