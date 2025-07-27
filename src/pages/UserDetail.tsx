@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from "@/components/ui/dialog";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ArrowLeft, Search, Lock, Edit, ChevronLeft, ChevronRight, Eye, EyeOff, X } from 'lucide-react';
 import CampaignSidebar from '@/components/CampaignSidebar';
 import usersData from '../../user.json';
@@ -25,7 +26,7 @@ const UserDetail = () => {
     email: '',
     phoneNumber: ''
   });
-  const itemsPerPage = 10;
+  const [itemsPerPage, setItemsPerPage] = useState(10);
 
   // Find user data
   const user = usersData.find(u => u["Nhân viên"] === userName);
@@ -62,6 +63,11 @@ const UserDetail = () => {
     } else {
       setSelectedCampaigns(paginatedCampaigns.map((_, index) => `${startIndex + index}`));
     }
+  };
+
+  const handlePageSizeChange = (newPageSize: string) => {
+    setItemsPerPage(parseInt(newPageSize));
+    setCurrentPage(1); // Reset to first page when changing page size
   };
 
   const formatCurrency = (amount: number) => {
@@ -277,7 +283,7 @@ const UserDetail = () => {
                 </div>
 
                 {/* Campaigns Table */}
-                <div className="border border-gray-200 rounded-lg overflow-hidden">
+                <div className="border border-gray-200 rounded-lg overflow-hidden overflow-x-auto">
                   {/* Table Header */}
                   <div className="bg-gray-50 px-4 py-3 border-b border-gray-200">
                     <div className="grid grid-cols-5 gap-4 items-center text-sm font-medium text-gray-500">
@@ -342,14 +348,26 @@ const UserDetail = () => {
                 </div>
 
                 {/* Pagination */}
-                <div className="flex items-center justify-between mt-4">
-                  <div className="text-sm text-gray-500">
-                    {itemsPerPage} mục trên một trang
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between mt-4 gap-4">
+                  <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-2">
+                      <span className="text-sm text-gray-500">Hiển thị</span>
+                      <Select value={itemsPerPage.toString()} onValueChange={handlePageSizeChange}>
+                        <SelectTrigger className="w-16 h-8">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="10">10</SelectItem>
+                          <SelectItem value="20">20</SelectItem>
+                          <SelectItem value="50">50</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <span className="text-sm text-gray-500">mục trên một trang</span>
+                    </div>
                   </div>
                   <div className="flex items-center space-x-4">
                     <div className="flex items-center space-x-2 text-sm text-gray-500">
-                      <span>{currentPage}</span>
-                      <span>{totalPages}</span>
+                      <span>Trang {currentPage} trên {totalPages}</span>
                     </div>
                     <div className="flex items-center space-x-2">
                       <Button
