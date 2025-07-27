@@ -218,7 +218,12 @@ const Prospects = () => {
                                 </span>
                               </div>
                               <div>
-                                <p className="font-medium text-gray-900">{customer.khachHang}</p>
+                                <button
+                                  onClick={() => navigate(`/customer/${encodeURIComponent(customer.khachHang)}`)}
+                                  className="font-medium text-gray-900 hover:text-blue-600 hover:underline text-left"
+                                >
+                                  {customer.khachHang}
+                                </button>
                                 <p className="text-sm text-gray-500">{customer.email}</p>
                               </div>
                             </div>
